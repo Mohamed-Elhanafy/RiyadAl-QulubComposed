@@ -1,4 +1,4 @@
-package com.example.riyadal_qulub.di
+package com.example.riyadal_qulub
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
