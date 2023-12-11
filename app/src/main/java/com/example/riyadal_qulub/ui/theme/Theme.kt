@@ -58,7 +58,7 @@ fun RiyadAlQulubcomposeTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
+            window.statusBarColor = PrimaryVariant.toArgb()
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }

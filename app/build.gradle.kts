@@ -32,6 +32,9 @@ android {
         }
     }
     compileOptions {
+        // Enable support for the new language APIs
+        isCoreLibraryDesugaringEnabled = true
+
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -107,4 +110,7 @@ dependencies {
 
 
 
+    // The compose calendar library
+    implementation("com.kizitonwose.calendar:compose:2.4.0")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 }
