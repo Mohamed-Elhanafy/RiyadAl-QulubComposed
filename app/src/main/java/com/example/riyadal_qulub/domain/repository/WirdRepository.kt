@@ -1,6 +1,6 @@
-package com.example.riyadal_qulub.data.repository
+package com.example.riyadal_qulub.domain.repository
 
-import com.example.riyadal_qulub.data.model.Wird
+import com.example.riyadal_qulub.domain.model.Wird
 import java.time.LocalDateTime
 
 interface WirdRepository {

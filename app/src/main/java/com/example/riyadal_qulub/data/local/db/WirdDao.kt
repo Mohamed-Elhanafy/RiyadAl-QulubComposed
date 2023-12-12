@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.riyadal_qulub.data.model.Wird
+import com.example.riyadal_qulub.domain.model.Wird
 import java.time.LocalDateTime
 
 @Dao

@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.riyadal_qulub.data.model.Wird
+import com.example.riyadal_qulub.domain.model.Wird
 import com.example.riyadal_qulub.util.DatabaseConstants.DATABASE_NAME
 
 

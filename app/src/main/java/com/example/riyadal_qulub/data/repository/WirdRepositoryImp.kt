@@ -1,7 +1,8 @@
 package com.example.riyadal_qulub.data.repository
 
 import com.example.riyadal_qulub.data.local.db.WirdDatabase
-import com.example.riyadal_qulub.data.model.Wird
+import com.example.riyadal_qulub.domain.model.Wird
+import com.example.riyadal_qulub.domain.repository.WirdRepository
 import java.time.LocalDateTime
 import javax.inject.Inject
 

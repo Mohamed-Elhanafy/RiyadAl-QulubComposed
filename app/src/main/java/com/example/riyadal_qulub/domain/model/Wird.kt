@@ -1,4 +1,4 @@
-package com.example.riyadal_qulub.data.model
+package com.example.riyadal_qulub.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

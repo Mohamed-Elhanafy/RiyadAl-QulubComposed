@@ -1,6 +1,6 @@
 package com.example.riyadal_qulub.di
 
-import com.example.riyadal_qulub.data.repository.WirdRepository
+import com.example.riyadal_qulub.domain.repository.WirdRepository
 import com.example.riyadal_qulub.data.repository.WirdRepositoryImp
 import dagger.Binds
 import dagger.Module
