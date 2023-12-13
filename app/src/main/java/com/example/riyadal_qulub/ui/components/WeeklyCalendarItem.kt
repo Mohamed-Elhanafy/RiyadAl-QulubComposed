@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -30,13 +29,12 @@ import com.kizitonwose.calendar.compose.WeekCalendar
 import com.kizitonwose.calendar.compose.weekcalendar.rememberWeekCalendarState
 import com.kizitonwose.calendar.core.WeekDay
 import java.time.LocalDate
-import java.time.YearMonth
 import java.time.format.TextStyle
 import java.util.Locale
 
 @Composable
-fun Day(day: WeekDay, onClick: (WeekDay) -> Unit, selectedDate: MutableState<LocalDate>) {
-    val isSelected = day.date == selectedDate.value
+fun WeeklyCalendarItem(day: WeekDay, onClick: (WeekDay) -> Unit, selectedDate: LocalDate) {
+    val isSelected = day.date == selectedDate
     val dayOfWeekInArabic = day.date.dayOfWeek.getDisplayName(TextStyle.FULL, Locale("ar"))
 
     Box(
@@ -46,7 +44,6 @@ fun Day(day: WeekDay, onClick: (WeekDay) -> Unit, selectedDate: MutableState<Loc
             .clickable(
                 onClick = {
                     onClick(day)
-                    selectedDate.value = day.date
                 }
             )
             .clip(RoundedCornerShape(14.dp))
@@ -80,19 +77,20 @@ fun Day(day: WeekDay, onClick: (WeekDay) -> Unit, selectedDate: MutableState<Loc
 
 @Preview
 @Composable
-fun DayPreview() {
+fun WeeklyCalenderPreview() {
     val state = rememberWeekCalendarState(
         startDate = LocalDate.now(),
         endDate = LocalDate.now().plusDays(6),
 
         )
-    val today = remember { mutableStateOf(LocalDate.now()) }
+    var selectedDate = remember { mutableStateOf(LocalDate.now()) }
     WeekCalendar(
         state = state,
         dayContent = {
-            Day(it, onClick = { day ->
+            WeeklyCalendarItem(it, onClick = { day ->
                 Log.i("TAG", "DayPreview:  ${day.date}")
-            }, selectedDate = today)
+                selectedDate.value = day.date
+            }, selectedDate = selectedDate.value)
         }
     )
 
