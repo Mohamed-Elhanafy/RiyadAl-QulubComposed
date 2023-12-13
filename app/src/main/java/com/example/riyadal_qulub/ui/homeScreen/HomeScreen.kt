@@ -5,9 +5,13 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -19,6 +23,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.riyadal_qulub.ui.components.WeeklyCalendarItem
+import com.example.riyadal_qulub.ui.components.WirdItem
 import com.example.riyadal_qulub.ui.theme.Gold
 import com.example.riyadal_qulub.ui.theme.rubikSansFamily
 import com.kizitonwose.calendar.compose.WeekCalendar
@@ -31,6 +36,7 @@ fun HomeScreen(
     navController: NavController
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val wirdStatus = state.wirds.map { mutableStateOf(it) }
     val weekCalendarState = rememberWeekCalendarState(
         startDate = LocalDate.now(),
         endDate = LocalDate.now().plusDays(6)
@@ -59,6 +65,19 @@ fun HomeScreen(
             textAlign = TextAlign.Right,
             modifier = Modifier.fillMaxWidth()
         )
+        Spacer(modifier  =  Modifier.padding(16.dp))
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        ) {
+            items(state.wirds.size) { index ->
+                WirdItem(wird = wirdStatus[index], onClick = { wird ->
+                    //viewModel.onWirdClick(wird)
+                })
+            }
+        }
+
 
     }
 }

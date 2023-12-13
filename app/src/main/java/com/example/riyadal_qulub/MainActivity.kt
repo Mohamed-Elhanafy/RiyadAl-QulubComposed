@@ -15,6 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.riyadal_qulub.ui.addingWirdScreen.AddWirdScreen
 import com.example.riyadal_qulub.ui.components.NavBar
 import com.example.riyadal_qulub.ui.homeScreen.HomeScreen
 import com.example.riyadal_qulub.ui.theme.RiyadAlQulubcomposeTheme
@@ -48,7 +49,8 @@ class MainActivity : ComponentActivity() {
                             .padding(it),
                         color = MaterialTheme.colorScheme.background
                     ) {
-                        HomeScreen(navController = navController)
+                       // HomeScreen(navController = navController)
+                        AddWirdScreen()
                     }
                 }
 
