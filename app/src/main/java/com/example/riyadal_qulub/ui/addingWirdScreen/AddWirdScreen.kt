@@ -1,23 +1,35 @@
 package com.example.riyadal_qulub.ui.addingWirdScreen
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.riyadal_qulub.R
+import com.example.riyadal_qulub.ui.components.ClickableWeekDays
 import com.example.riyadal_qulub.ui.theme.Primary
 import com.example.riyadal_qulub.ui.theme.rubikSansFamily
 
@@ -47,7 +59,7 @@ fun AddWirdScreen(
             //todo add colors
         )
 
-        Divider(modifier = Modifier.padding(16.dp))
+        Divider(modifier = Modifier.padding(vertical = 16.dp))
 
         Text(
             text = "تكرار الورد",
@@ -55,6 +67,68 @@ fun AddWirdScreen(
             fontSize = 24.sp,
             color = Color.Black, textAlign = TextAlign.End, modifier = Modifier.fillMaxWidth()
         )
+        Spacer(modifier = Modifier.padding(8.dp))
+        ClickableWeekDays()
+        Divider(modifier = Modifier.padding(vertical = 16.dp))
+        Text(
+            text = "تنبيهات الورد",
+            fontFamily = rubikSansFamily,
+            fontSize = 24.sp,
+            color = Color.Black, textAlign = TextAlign.End, modifier = Modifier.fillMaxWidth()
+        )
+        Row(
+            horizontalArrangement = Arrangement.End,
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = "Add",
+                tint = Primary,
+                modifier = Modifier.size(12.dp) // Adjust the size as needed
+            )
+            Text(
+                text = "إضافة تنبيه",
+                fontFamily = rubikSansFamily,
+                fontSize = 12.sp,
+                color = Primary,
+                textAlign = TextAlign.End,
+                modifier = Modifier
+                    .clickable {
+
+                    }
+            )
+
+        }
+        Divider(modifier = Modifier.padding(vertical = 16.dp))
+
+        Row(
+            horizontalArrangement = Arrangement.End,
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            Icon(
+                painter = painterResource(id = R.drawable.ic_calender),
+                contentDescription = "Add",
+
+                modifier = Modifier.size(24.dp) // Adjust the size as needed
+            )
+            Spacer(modifier = Modifier.padding(4.dp))
+            Text(
+                text = "بداية الورد من اليوم ",
+                fontFamily = rubikSansFamily,
+                fontSize = 24.sp,
+                color = Primary,
+                textAlign = TextAlign.End,
+                modifier = Modifier
+                    .clickable {
+
+                    }
+            )
+        }
+        Divider(modifier = Modifier.padding(vertical = 16.dp))
+
 
     }
 }
