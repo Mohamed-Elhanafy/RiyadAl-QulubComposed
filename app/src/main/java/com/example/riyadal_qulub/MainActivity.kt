@@ -13,6 +13,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.riyadal_qulub.ui.addingWirdScreen.AddWirdScreen
@@ -43,15 +45,18 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 ) {
-                    Surface(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(it),
-                        color = MaterialTheme.colorScheme.background
-                    ) {
-                       // HomeScreen(navController = navController)
-                        AddWirdScreen()
-                    }
+                        innerPadding ->
+                    NavHost(navController = navController, startDestination = "home") {
+                        composable("home") {
+                            Surface(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(innerPadding),
+                                color = MaterialTheme.colorScheme.background
+                            ) {
+                                AddWirdScreen()
+                            }
+                        }
                 }
 
 
@@ -60,5 +65,5 @@ class MainActivity : ComponentActivity() {
     }
 
 
-}
+}}
 
