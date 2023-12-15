@@ -44,9 +44,9 @@ import java.time.LocalDate
 
 
 @Composable
-fun WirdItem(wird: MutableState<Wird>, onClick: (Wird) -> Unit) {
+fun WirdItem(wird: MutableState<Wird>, onClick: (Wird) -> Unit , modifier: Modifier = Modifier) {
     Box(
-        modifier = Modifier
+        modifier = modifier
 
             .clip(RoundedCornerShape(4.dp))
             .border(2.dp, color = Secondary)

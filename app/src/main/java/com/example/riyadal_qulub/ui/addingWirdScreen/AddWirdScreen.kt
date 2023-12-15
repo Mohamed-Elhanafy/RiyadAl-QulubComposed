@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import com.example.riyadal_qulub.R
 import com.example.riyadal_qulub.ui.components.ClickableWeekDays
 import com.example.riyadal_qulub.ui.theme.Primary
@@ -40,7 +41,8 @@ import com.example.riyadal_qulub.ui.theme.rubikSansFamily
 
 @Composable
 fun AddWirdScreen(
-    viewModel: AddViewModel = hiltViewModel()
+    viewModel: AddViewModel = hiltViewModel(),
+    navController: NavController
 ) {
 
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -211,6 +213,7 @@ fun AddWirdScreen(
         Button(
             onClick = {
                 viewModel.addWird()
+                navController.navigateUp()
             }, modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 62.dp, horizontal = 16.dp),

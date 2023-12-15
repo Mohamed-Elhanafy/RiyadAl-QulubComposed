@@ -57,6 +57,16 @@ class MainActivity : ComponentActivity() {
                                 HomeScreen( navController = navController)
                             }
                         }
+                        composable("add") {
+                            Surface(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(innerPadding),
+                                color = MaterialTheme.colorScheme.background
+                            ) {
+                                AddWirdScreen( navController = navController)
+                            }
+                        }
                 }
 
 
