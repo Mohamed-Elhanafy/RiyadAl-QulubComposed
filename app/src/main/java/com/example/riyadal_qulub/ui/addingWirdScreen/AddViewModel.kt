@@ -1,9 +1,14 @@
 package com.example.riyadal_qulub.ui.addingWirdScreen
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.riyadal_qulub.domain.model.Wird
 import com.example.riyadal_qulub.domain.repository.WirdRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -28,4 +33,19 @@ class AddViewModel @Inject constructor(
         state.value = state.value.copy(isEveningWird = isEveningWird)
     }
 
+
+
+    fun addWird(){
+     viewModelScope.launch(Dispatchers.IO) {
+         repository.insertWird(
+            Wird(
+                name = state.value.wirdName,
+                isMorningWird = state.value.isMorningWird,
+                isEveningWird = state.value.isEveningWird,
+                wirdDays = state.value.daysCheckedState.value,
+                startDate = state.value.startedDate,
+            )
+         )
+     }
+    }
 }

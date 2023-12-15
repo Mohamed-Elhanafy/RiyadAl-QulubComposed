@@ -1,5 +1,6 @@
 package com.example.riyadal_qulub.ui.addingWirdScreen
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -43,6 +44,8 @@ fun AddWirdScreen(
 ) {
 
     val state by viewModel.state.collectAsStateWithLifecycle()
+
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -72,7 +75,9 @@ fun AddWirdScreen(
             color = Color.Black, textAlign = TextAlign.End, modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.padding(8.dp))
-        ClickableWeekDays()
+        ClickableWeekDays(
+            daysChecked = state.daysCheckedState
+        )
         Divider(modifier = Modifier.padding(vertical = 16.dp))
         Text(
             text = "تنبيهات الورد",
@@ -205,7 +210,7 @@ fun AddWirdScreen(
         }
         Button(
             onClick = {
-
+                viewModel.addWird()
             }, modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 62.dp, horizontal = 16.dp),

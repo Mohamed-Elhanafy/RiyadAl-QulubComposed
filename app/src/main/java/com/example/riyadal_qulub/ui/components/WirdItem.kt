@@ -17,6 +17,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.riyadal_qulub.domain.model.Wird
 import com.example.riyadal_qulub.ui.theme.LabelGrey
+import com.example.riyadal_qulub.ui.theme.Primary
 import com.example.riyadal_qulub.ui.theme.Secondary
 import com.example.riyadal_qulub.ui.theme.rubikSansFamily
 import com.example.riyadal_qulub.util.WirdStatus
@@ -66,7 +68,10 @@ fun WirdItem(wird: MutableState<Wird>, onClick: (Wird) -> Unit) {
                 },
                 modifier = Modifier
                     //                  .width(150.dp)
-                    .padding(16.dp)
+                    .padding(16.dp),
+               colors = ButtonDefaults.buttonColors(
+                    containerColor = Primary,
+                )
             ) {
                 Row(verticalAlignment = CenterVertically) {
                     Icon(
@@ -102,13 +107,13 @@ fun WirdItem(wird: MutableState<Wird>, onClick: (Wird) -> Unit) {
                     textAlign = TextAlign.Right
 
                 )
-                Text(
+  /*              Text(
                     text = wird.value.quantity.toString() + " " + wird.value.unit,
                     fontFamily = rubikSansFamily,
                     color = LabelGrey,
                     fontSize = 12.sp,
                     textAlign = TextAlign.Right
-                )
+                )*/
             }
         }
 

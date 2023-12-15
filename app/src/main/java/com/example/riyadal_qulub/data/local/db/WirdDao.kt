@@ -18,13 +18,16 @@ interface WirdDao {
     @Delete
     fun delete(wird: Wird)
 
-    @Query("UPDATE wirds SET doneDays = :doneDays WHERE id = :wirdId")
-    fun updateDoneDays(wirdId: Int, doneDays: List<LocalDateTime>)
+/*    @Query("UPDATE wirds SET doneDays = :doneDays WHERE id = :wirdId")
+    fun updateDoneDays(wirdId: Int, doneDays: List<LocalDateTime>)*/
 
     @Query("UPDATE wirds SET isDone = :isDone WHERE id = :wirdId")
     fun updateIsDone(wirdId: Int, isDone: Boolean)
 
     //add date to doneDates
-    @Query("UPDATE wirds SET doneDays = :doneDates WHERE id = :wirdId")
-    fun updateDoneDates(wirdId: Int, doneDates: List<LocalDateTime>)
+/*    @Query("UPDATE wirds SET doneDays = :doneDates WHERE id = :wirdId")
+    fun updateDoneDates(wirdId: Int, doneDates: List<LocalDateTime>)*/
+
+    @Query("UPDATE wirds SET wirdDays = :wirdDays WHERE id = :wirdId")
+    fun updateWirdDays(wirdId: Int, wirdDays: List<LocalDateTime>)
 }

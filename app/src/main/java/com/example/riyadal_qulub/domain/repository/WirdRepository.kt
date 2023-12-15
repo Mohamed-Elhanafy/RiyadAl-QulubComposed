@@ -12,6 +12,6 @@ interface WirdRepository {
 
     suspend fun updateIsDone(wirdId: Int, isDone: Boolean)
 
-    suspend fun updateDoneDates(wirdId: Int, doneDates: List<LocalDateTime>)
+    suspend fun updateWirdDays(wirdId: Int, doneDates: List<LocalDateTime>)
 
 }

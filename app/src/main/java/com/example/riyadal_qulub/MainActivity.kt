@@ -54,7 +54,7 @@ class MainActivity : ComponentActivity() {
                                     .padding(innerPadding),
                                 color = MaterialTheme.colorScheme.background
                             ) {
-                                AddWirdScreen()
+                                HomeScreen( navController = navController)
                             }
                         }
                 }

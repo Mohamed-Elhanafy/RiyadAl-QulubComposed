@@ -23,10 +23,15 @@ import com.example.riyadal_qulub.ui.theme.rubikSansFamily
 private const val BOX_SIZE = 46
 
 @Composable
-fun DayCircle(clickedState: MutableState<Boolean>) {
+fun DayCircle(
+    clickedState: MutableState<Boolean>, onCheckedChange: (Boolean) -> Unit = {} // Add this line
+) {
     Canvas(modifier = Modifier
         .size(BOX_SIZE.dp)
-        .clickable { clickedState.value = !clickedState.value }) {
+        .clickable {
+            clickedState.value = !clickedState.value
+            onCheckedChange(clickedState.value) // Add this line
+        }) {
         val radius = size.minDimension / 2 - 1.dp.toPx()
         drawCircle(
             color = Primary,
@@ -38,10 +43,14 @@ fun DayCircle(clickedState: MutableState<Boolean>) {
 }
 
 @Composable
-fun ClickableDayCircle(day: String = "الأحد", clicked: Boolean = false) {
+fun ClickableDayCircle(
+    day: String = "الأحد",
+    clicked: Boolean = false,
+    onCheckedChange: (Boolean) -> Unit = {} // Add this line
+) {
     val clickedState = remember { mutableStateOf(clicked) }
     Box(contentAlignment = Alignment.Center) {
-        DayCircle(clickedState = clickedState)
+        DayCircle(clickedState = clickedState, onCheckedChange = onCheckedChange)
         DayText(day = day, clickedState = clickedState.value)
     }
 }
