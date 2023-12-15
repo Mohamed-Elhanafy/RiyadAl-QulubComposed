@@ -11,6 +11,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
@@ -112,7 +116,11 @@ fun AddWirdScreen(
                 painter = painterResource(id = R.drawable.ic_calender),
                 contentDescription = "Add",
 
-                modifier = Modifier.size(24.dp) // Adjust the size as needed
+                modifier = Modifier
+                    .size(24.dp)
+                    .clickable {
+
+                    }
             )
             Spacer(modifier = Modifier.padding(4.dp))
             Text(
@@ -120,6 +128,52 @@ fun AddWirdScreen(
                 fontFamily = rubikSansFamily,
                 fontSize = 24.sp,
                 color = Primary,
+                textAlign = TextAlign.End
+
+            )
+        }
+        Divider(modifier = Modifier.padding(vertical = 16.dp))
+        Row(
+            horizontalArrangement = Arrangement.End,
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            Icon(
+                painter = painterResource(id = R.drawable.ic_sun),
+                contentDescription = "Add",
+
+                modifier = Modifier
+                    .size(24.dp)
+                    .clickable {
+
+                    }
+            )
+            Spacer(modifier = Modifier.padding(4.dp))
+            Text(
+                text = "معاد الورد",
+                fontFamily = rubikSansFamily,
+                fontSize = 24.sp,
+                color = Primary,
+                textAlign = TextAlign.End
+
+            )
+        }
+        Row(
+            horizontalArrangement = Arrangement.End,
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            Checkbox(
+                checked = state.isMorningWird,
+                onCheckedChange = { viewModel.updateIsMorningWird(it) })
+            Spacer(modifier = Modifier.padding(4.dp))
+            Text(
+                text = "صباحاً",
+                fontFamily = rubikSansFamily,
+                fontSize = 12.sp,
+                color = Color.Black,
                 textAlign = TextAlign.End,
                 modifier = Modifier
                     .clickable {
@@ -127,7 +181,40 @@ fun AddWirdScreen(
                     }
             )
         }
-        Divider(modifier = Modifier.padding(vertical = 16.dp))
+        Row(
+            horizontalArrangement = Arrangement.End,
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            Checkbox(
+                checked = state.isEveningWird,
+                onCheckedChange = { viewModel.updateIsEveningWird(it) })
+            Spacer(modifier = Modifier.padding(4.dp))
+            Text(
+                text = "مساءً",
+                fontFamily = rubikSansFamily,
+                fontSize = 12.sp,
+                color = Color.Black,
+                textAlign = TextAlign.End,
+                modifier = Modifier
+                    .clickable {
+
+                    }
+            )
+        }
+        Button(
+            onClick = {
+
+            }, modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 62.dp, horizontal = 16.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Primary,
+            )
+        ) {
+            Text(text = "إضافة الورد")
+        }
 
 
     }

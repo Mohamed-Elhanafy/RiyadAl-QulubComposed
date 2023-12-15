@@ -20,4 +20,12 @@ class AddViewModel @Inject constructor(
         state.value = state.value.copy(wirdName = newName)
     }
 
+    fun updateIsMorningWird(isMorningWird: Boolean) {
+        state.value = state.value.copy(isMorningWird = isMorningWird)
+    }
+
+    fun updateIsEveningWird(isEveningWird: Boolean) {
+        state.value = state.value.copy(isEveningWird = isEveningWird)
+    }
+
 }
