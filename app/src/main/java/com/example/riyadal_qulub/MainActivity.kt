@@ -20,6 +20,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.riyadal_qulub.ui.addingWirdScreen.AddWirdScreen
 import com.example.riyadal_qulub.ui.components.NavBar
 import com.example.riyadal_qulub.ui.homeScreen.HomeScreen
+import com.example.riyadal_qulub.ui.navigation.Navigation
 import com.example.riyadal_qulub.ui.theme.RiyadAlQulubcomposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,36 +45,13 @@ class MainActivity : ComponentActivity() {
                             NavBar(backStackEntry = backStackEntry, navController = navController)
                         }
                     }
-                ) {
-                        innerPadding ->
-                    NavHost(navController = navController, startDestination = "home") {
-                        composable("home") {
-                            Surface(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .padding(innerPadding),
-                                color = MaterialTheme.colorScheme.background
-                            ) {
-                                HomeScreen( navController = navController)
-                            }
-                        }
-                        composable("add") {
-                            Surface(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .padding(innerPadding),
-                                color = MaterialTheme.colorScheme.background
-                            ) {
-                                AddWirdScreen( navController = navController)
-                            }
-                        }
+                ) { innerPadding ->
+                    Navigation(innerPadding)
                 }
-
-
             }
         }
+
+
     }
-
-
-}}
+}
 

@@ -37,6 +37,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.riyadal_qulub.ui.components.NavBar
 import com.example.riyadal_qulub.ui.components.WeeklyCalendarItem
 import com.example.riyadal_qulub.ui.components.WirdItem
+import com.example.riyadal_qulub.ui.navigation.Screen
 import com.example.riyadal_qulub.ui.theme.Gold
 import com.example.riyadal_qulub.ui.theme.LabelNight
 import com.example.riyadal_qulub.ui.theme.Primary
@@ -65,7 +66,7 @@ fun HomeScreen(
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { navController.navigate("add") },
+                onClick = { navController.navigate(Screen.AddWirdScreen.route) },
                 containerColor = Secondary
             ) {
                 Icon(Icons.Filled.Add, contentDescription = "Add", tint = Primary)
