@@ -8,7 +8,7 @@ import java.time.LocalDateTime
 data class AddWirdViewState (
     var wirdName: String = "",
     val repeatedDays :List<WeekDays> = emptyList(),
-    val startedDate:LocalDateTime = LocalDateTime.now(),
+    var startedDate:LocalDateTime = LocalDateTime.now(),
     val isMorningWird:Boolean = false,
     val isEveningWird:Boolean = false,
     val wirdNotificationTime:LocalDateTime = LocalDateTime.now(),

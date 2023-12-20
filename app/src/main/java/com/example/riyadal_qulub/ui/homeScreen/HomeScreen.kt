@@ -106,8 +106,11 @@ fun HomeScreen(
                     val wird = remember { mutableStateOf(filteredWirds[index]) }
                     WirdItem(
                         wird = wird,
-                        onClick = { Log.i(TAG, it.name)})
+                        onClick = { Log.i(TAG, it.name) })
                     Spacer(modifier = Modifier.padding(vertical = 8.dp))
+
+                    /* toDo problem the wirdState is updating in all days that selected i need to find
+                     way to separate them from each other */
                 }
             }
 

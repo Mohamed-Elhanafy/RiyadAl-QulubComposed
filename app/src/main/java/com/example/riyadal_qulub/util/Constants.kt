@@ -22,14 +22,3 @@ val daysOfWeekInArabic = mapOf(
 
 
 // Helper function to convert DayOfWeek to WeekDays
-fun convertDayOfWeekToWeekDays(dayOfWeek: DayOfWeek): WeekDays {
-    return when (dayOfWeek) {
-        DayOfWeek.MONDAY -> WeekDays.MONDAY
-        DayOfWeek.TUESDAY -> WeekDays.TUESDAY
-        DayOfWeek.WEDNESDAY -> WeekDays.WEDNESDAY
-        DayOfWeek.THURSDAY -> WeekDays.THURSDAY
-        DayOfWeek.FRIDAY -> WeekDays.FRIDAY
-        DayOfWeek.SATURDAY -> WeekDays.SATURDAY
-        DayOfWeek.SUNDAY -> WeekDays.SUNDAY
-    }
-}
