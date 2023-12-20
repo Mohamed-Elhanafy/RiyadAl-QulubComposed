@@ -1,4 +1,4 @@
-package com.example.riyadal_qulub.ui.components
+package com.example.riyadal_qulub.ui.navigation
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -16,7 +16,7 @@ import com.example.riyadal_qulub.ui.theme.rubikSansFamily
 
 
 @Composable
- fun NavBar(backStackEntry: NavBackStackEntry?, navController: NavController) {
+fun NavBar(backStackEntry: NavBackStackEntry?, navController: NavController) {
     NavigationBar(
         containerColor = Secondary
     ) {
@@ -24,8 +24,8 @@ import com.example.riyadal_qulub.ui.theme.rubikSansFamily
 
         NavigationBarItem(
 
-            selected = backStackEntry?.destination?.route == "home",
-            onClick = { navController.navigate("home") },
+            selected = backStackEntry?.destination?.route == Screen.HomeScreen.route,
+            onClick = { navController.navigate(Screen.HomeScreen.route) },
             icon = {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_home),
@@ -33,12 +33,12 @@ import com.example.riyadal_qulub.ui.theme.rubikSansFamily
                 )
             },
             label = {
-                Text(text = "الرئيسية" , fontFamily = rubikSansFamily)
+                Text(text = "الرئيسية", fontFamily = rubikSansFamily)
             }
         )
         NavigationBarItem(
-            selected = backStackEntry?.destination?.route == "statistics",
-            onClick = { navController.navigate("statistics") },
+            selected = backStackEntry?.destination?.route == Screen.StatisticsScreen.route,
+            onClick = { navController.navigate(Screen.StatisticsScreen.route) },
             icon = {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_statistics),
@@ -50,8 +50,8 @@ import com.example.riyadal_qulub.ui.theme.rubikSansFamily
             }
         )
         NavigationBarItem(
-            selected = backStackEntry?.destination?.route == "setting",
-            onClick = { navController.navigate("setting") },
+            selected = backStackEntry?.destination?.route == Screen.SettingsScreen.route,
+            onClick = { navController.navigate(Screen.SettingsScreen.route) },
             icon = {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_setting),

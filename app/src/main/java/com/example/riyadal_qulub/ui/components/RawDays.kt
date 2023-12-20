@@ -10,6 +10,8 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.riyadal_qulub.domain.model.WeekDays
+import com.example.riyadal_qulub.util.daysOfWeekInArabic
 import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.format.TextStyle
@@ -17,40 +19,30 @@ import java.util.Locale
 
 @Composable
 fun ClickableWeekDays(
-    daysChecked: MutableState<List<LocalDateTime>>
+    daysChecked: MutableState<List<WeekDays>>
 ) {
-    val daysOfWeek = listOf(
-        DayOfWeek.FRIDAY,
-        DayOfWeek.THURSDAY,
-        DayOfWeek.WEDNESDAY,
-        DayOfWeek.TUESDAY,
-        DayOfWeek.MONDAY,
-        DayOfWeek.SUNDAY,
-        DayOfWeek.SATURDAY
-    )
+    val daysOfWeek = WeekDays.values().toList()
 
     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
         for ((index, dayOfWeek) in daysOfWeek.withIndex()) {
-            val dayOfWeekInArabic = dayOfWeek.getDisplayName(TextStyle.FULL, Locale("ar"))
+            // Get the name in Arabic from the map
+            val dayOfWeekInArabic = daysOfWeekInArabic[dayOfWeek]
             ClickableDayCircle(
-                day = dayOfWeekInArabic,
-                clicked = daysChecked.value.contains(LocalDateTime.now().with(DayOfWeek.of(index + 1))),
+                day = dayOfWeekInArabic!!,
+                clicked = daysChecked.value.contains(dayOfWeek),
                 onCheckedChange = { isChecked ->
-                    val date = LocalDateTime.now().with(DayOfWeek.of(index + 1))
                     if (isChecked) {
-                        daysChecked.value = daysChecked.value + date
+                        daysChecked.value = daysChecked.value + dayOfWeek
                     } else {
-                        daysChecked.value = daysChecked.value - date
+                        daysChecked.value = daysChecked.value - dayOfWeek
                     }
                 }
             )
         }
     }
 
-
     Log.i("TAG", "ClickableWeekDays:    ${daysChecked.value} ")
 }
-
 
 /*
 

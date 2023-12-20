@@ -36,6 +36,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.riyadal_qulub.R
 import com.example.riyadal_qulub.ui.components.ClickableWeekDays
+import com.example.riyadal_qulub.ui.navigation.Screen
 import com.example.riyadal_qulub.ui.theme.Primary
 import com.example.riyadal_qulub.ui.theme.rubikSansFamily
 
@@ -213,7 +214,7 @@ fun AddWirdScreen(
         Button(
             onClick = {
                 viewModel.addWird()
-                navController.navigateUp()
+                navController.navigate(Screen.HomeScreen.route)
             }, modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 62.dp, horizontal = 16.dp),

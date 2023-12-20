@@ -3,23 +3,14 @@ package com.example.riyadal_qulub
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.riyadal_qulub.ui.addingWirdScreen.AddWirdScreen
-import com.example.riyadal_qulub.ui.components.NavBar
-import com.example.riyadal_qulub.ui.homeScreen.HomeScreen
+import com.example.riyadal_qulub.ui.navigation.NavBar
 import com.example.riyadal_qulub.ui.navigation.Navigation
 import com.example.riyadal_qulub.ui.theme.RiyadAlQulubcomposeTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,11 +24,10 @@ class MainActivity : ComponentActivity() {
 
         setContent {
 
-
             RiyadAlQulubcomposeTheme {
                 val navController = rememberNavController()
                 val backStackEntry by navController.currentBackStackEntryAsState()
-                var showBottomBar by rememberSaveable { mutableStateOf(true) }
+                val showBottomBar by rememberSaveable { mutableStateOf(true) }
 
                 Scaffold(
                     bottomBar = {
@@ -46,7 +36,7 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 ) { innerPadding ->
-                    Navigation(innerPadding)
+                    Navigation(innerPadding, navController = navController)
                 }
             }
         }
