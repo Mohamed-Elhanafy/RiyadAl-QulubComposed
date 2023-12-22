@@ -9,6 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
 import javax.inject.Inject
 
 
@@ -35,6 +36,7 @@ class AddViewModel @Inject constructor(
 
 
 
+
     fun addWird(){
      viewModelScope.launch(Dispatchers.IO) {
          repository.insertWird(
@@ -44,6 +46,7 @@ class AddViewModel @Inject constructor(
                 isEveningWird = state.value.isEveningWird,
                 wirdDays = state.value.daysCheckedState.value,
                 startDate = state.value.startedDate,
+                doneDays = listOf() // Provide an empty list for doneDays
             )
          )
      }

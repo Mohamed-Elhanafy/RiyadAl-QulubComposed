@@ -42,8 +42,12 @@ object Converters {
 
     @TypeConverter
     fun dateListToString(dateList: List<LocalDateTime>?): String? {
-        return dateList?.stream()?.map { obj: LocalDateTime -> obj.toString() }
-            ?.reduce { s1: String?, s2: String? -> "$s1,$s2" }?.orElse(null)
+        return if (dateList.isNullOrEmpty()) {
+            "" // Return an empty string when the list is null or empty
+        } else {
+            dateList.stream().map { obj: LocalDateTime -> obj.toString() }
+                .reduce { s1: String?, s2: String? -> "$s1,$s2" }?.orElse(null)
+        }
     }
 
     @TypeConverter

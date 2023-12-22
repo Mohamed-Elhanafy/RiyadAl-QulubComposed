@@ -17,7 +17,7 @@ data class Wird(
     var isAlarm: Boolean = false,
     var alarmTime: String = "",
     var wirdDays: List<WeekDays> = emptyList(),
-   // var doneDays: List<LocalDateTime> = emptyList(),
+    var doneDays: List<LocalDateTime> = emptyList(),
     var unit: String = "",
     var quantity: Int = 0,
     var isDaily: Boolean = false,

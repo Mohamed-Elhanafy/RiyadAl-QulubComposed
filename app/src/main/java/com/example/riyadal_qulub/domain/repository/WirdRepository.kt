@@ -14,4 +14,7 @@ interface WirdRepository {
 
     suspend fun updateWirdDays(wirdId: Int, doneDates: List<LocalDateTime>)
 
+    suspend fun updateDoneDates(wirdId: Int, doneDates: List<LocalDateTime>)
+
+    suspend fun getWirdById(wirdId: Int): Wird
 }

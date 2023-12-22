@@ -1,6 +1,10 @@
 package com.example.riyadal_qulub.ui.components
 
+import android.util.Log
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,7 +15,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
@@ -34,17 +37,26 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.riyadal_qulub.domain.model.Wird
-import com.example.riyadal_qulub.ui.theme.LabelGrey
+import com.example.riyadal_qulub.ui.homeScreen.HomeViewState
 import com.example.riyadal_qulub.ui.theme.Primary
 import com.example.riyadal_qulub.ui.theme.Secondary
 import com.example.riyadal_qulub.ui.theme.rubikSansFamily
-import com.example.riyadal_qulub.util.WirdStatus
-import kotlinx.coroutines.flow.MutableStateFlow
-import java.time.LocalDate
+import java.time.LocalDateTime
+import androidx.compose.runtime.collectAsState
 
-
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun WirdItem(wird: MutableState<Wird>, onClick: (Wird) -> Unit , modifier: Modifier = Modifier) {
+fun WirdItem(
+    wird: MutableState<Wird>,
+    onButtonClicked: (Wird) -> Unit,
+    onWirdClicked: (Wird) -> Unit,
+    onWirdLongPressed: (Wird) -> Unit,
+    modifier: Modifier = Modifier,
+    state: HomeViewState,
+) {
+    // Print the Wird
+    Log.i("Wird Item", "${wird.value.name}: ${wird.value.doneDays}")
+
     Box(
         modifier = modifier
 
@@ -52,8 +64,12 @@ fun WirdItem(wird: MutableState<Wird>, onClick: (Wird) -> Unit , modifier: Modif
             .border(2.dp, color = Secondary)
             .fillMaxWidth()
             .height(82.dp)
+            .combinedClickable(
+                onClick = { onWirdClicked(wird.value) },
+                onLongClick = { onWirdLongPressed(wird.value) }
+            ),
 
-    ) {
+        ) {
         Row(
             modifier = Modifier
                 .fillMaxSize(),
@@ -62,20 +78,26 @@ fun WirdItem(wird: MutableState<Wird>, onClick: (Wird) -> Unit , modifier: Modif
         ) {
             Button(
                 onClick = {
-                    val newWird = wird.value.copy(isDone = !wird.value.isDone)
-                    onClick(newWird)
-                    wird.value = newWird
+                    // Update the doneDays list immediately
+                    wird.value = wird.value.copy(
+                        doneDays = wird.value.doneDays.toMutableList().apply {
+                            add(state.selectedDate.value.atStartOfDay())
+                        }
+                    )
+                    onButtonClicked(wird.value)
                 },
                 modifier = Modifier
                     //                  .width(150.dp)
                     .padding(16.dp),
-               colors = ButtonDefaults.buttonColors(
+                colors = ButtonDefaults.buttonColors(
                     containerColor = Primary,
                 )
             ) {
                 Row(verticalAlignment = CenterVertically) {
+
                     Icon(
-                        imageVector = if (!wird.value.isDone) Icons.Default.Check else Icons.Default.Refresh,
+                        imageVector = if (!wird.value.doneDays.asIterable().map { it.toLocalDate() }
+                                .contains(state.selectedDate.value)) Icons.Default.Check else Icons.Default.Refresh,
                         contentDescription = null,
                         tint = Color.White,
                         modifier = Modifier.size(16.dp)
@@ -103,17 +125,9 @@ fun WirdItem(wird: MutableState<Wird>, onClick: (Wird) -> Unit , modifier: Modif
                     fontFamily = rubikSansFamily,
                     color = Color.Black,
                     fontSize = 16.sp,
-
                     textAlign = TextAlign.Right
-
                 )
-  /*              Text(
-                    text = wird.value.quantity.toString() + " " + wird.value.unit,
-                    fontFamily = rubikSansFamily,
-                    color = LabelGrey,
-                    fontSize = 12.sp,
-                    textAlign = TextAlign.Right
-                )*/
+
             }
         }
 
@@ -121,6 +135,7 @@ fun WirdItem(wird: MutableState<Wird>, onClick: (Wird) -> Unit , modifier: Modif
     }
 }
 
+/*
 
 @Composable
 @Preview
@@ -128,8 +143,6 @@ fun WirdItemPreview() {
 
     val wirdState = remember { mutableStateOf(Wird(name = "قرائة قران")) }
 
-    WirdItem(wirdState, onClick = {
+    WirdItem(wirdState, {}, {}, {})
 
-    })
-
-}
+}*/

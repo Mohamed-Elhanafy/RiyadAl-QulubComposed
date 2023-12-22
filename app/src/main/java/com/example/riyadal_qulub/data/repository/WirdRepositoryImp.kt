@@ -32,4 +32,12 @@ class WirdRepositoryImp @Inject constructor(
         dao.updateWirdDays(wirdId, doneDates)
 
     }
+
+    override suspend fun updateDoneDates(wirdId: Int, doneDates: List<LocalDateTime>) {
+        dao.updateDoneDates(wirdId, doneDates)
+    }
+
+    override suspend fun getWirdById(wirdId: Int): Wird {
+        return dao.getWirdById(wirdId)
+    }
 }
