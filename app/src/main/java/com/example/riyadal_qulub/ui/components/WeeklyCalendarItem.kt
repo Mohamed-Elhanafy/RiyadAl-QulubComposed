@@ -61,7 +61,7 @@ fun WeeklyCalendarItem(day: WeekDay, onClick: (WeekDay) -> Unit, selectedDate: L
                 text = dayOfWeekInArabic,
                 fontFamily = rubikSansFamily,
                 fontSize = 12.sp,
-                fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
+                // fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal,
                 color = if (isSelected) Color.Black else LabelGrey
             )
             Text(

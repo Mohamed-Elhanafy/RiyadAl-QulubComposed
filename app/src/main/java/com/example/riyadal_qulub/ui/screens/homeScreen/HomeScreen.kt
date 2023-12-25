@@ -107,7 +107,9 @@ fun HomeScreen(
                         },
                         onWirdClicked = {
                             Log.i(TAG, it.name)
-                            navController.navigate(Screen.WirdScreen.route)
+                            Log.i(TAG, it.id.toString())
+                            navController.navigate(Screen.WirdScreen.route(it.id.toString()))
+                            //todo pass the wird to the WirdScreen
                         },
                         onWirdLongPressed = {
                             Log.i(

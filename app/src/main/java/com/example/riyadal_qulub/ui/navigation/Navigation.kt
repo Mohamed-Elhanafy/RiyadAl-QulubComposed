@@ -64,16 +64,19 @@ fun Navigation(innerPadding: PaddingValues, navController: NavHostController) {
 
             }
         }
-        composable(Screen.WirdScreen.route) {
+        composable(Screen.WirdScreen.route("{wirdId}")) { backStackEntry ->
             Surface(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding),
                 color = MaterialTheme.colorScheme.background
             ) {
-                WirdScreen(navController = navController)
+                val arguments = backStackEntry.arguments
+                val wirdId = arguments?.getString("wirdId")
+                if (wirdId != null) {
+                    WirdScreen(wirdId = wirdId.toInt(), navController = navController)
+                }
             }
         }
     }
-
 }
