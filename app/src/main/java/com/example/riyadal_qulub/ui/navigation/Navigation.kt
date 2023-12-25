@@ -16,8 +16,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.riyadal_qulub.ui.addingWirdScreen.AddWirdScreen
-import com.example.riyadal_qulub.ui.homeScreen.HomeScreen
+import com.example.riyadal_qulub.ui.screens.addingWirdScreen.AddWirdScreen
+import com.example.riyadal_qulub.ui.screens.homeScreen.HomeScreen
+import com.example.riyadal_qulub.ui.screens.wirdScreen.WirdScreen
 
 @Composable
 fun Navigation(innerPadding: PaddingValues, navController: NavHostController) {
@@ -27,8 +28,7 @@ fun Navigation(innerPadding: PaddingValues, navController: NavHostController) {
             Surface(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(innerPadding)
-                ,
+                    .padding(innerPadding),
                 color = MaterialTheme.colorScheme.background
             ) {
                 HomeScreen(navController = navController)
@@ -48,8 +48,7 @@ fun Navigation(innerPadding: PaddingValues, navController: NavHostController) {
             Surface(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(innerPadding)
-                ,
+                    .padding(innerPadding),
                 color = MaterialTheme.colorScheme.background
             ) {
 
@@ -59,11 +58,20 @@ fun Navigation(innerPadding: PaddingValues, navController: NavHostController) {
             Surface(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(innerPadding)
-                ,
+                    .padding(innerPadding),
                 color = MaterialTheme.colorScheme.background
             ) {
 
+            }
+        }
+        composable(Screen.WirdScreen.route) {
+            Surface(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding),
+                color = MaterialTheme.colorScheme.background
+            ) {
+                WirdScreen(navController = navController)
             }
         }
     }

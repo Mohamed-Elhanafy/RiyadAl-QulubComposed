@@ -11,6 +11,7 @@ sealed class Screen(val route : String){
 
     object StatisticsScreen : Screen("statistics_screen")
 
+    object WirdScreen : Screen("wird_screen")
 
     fun createRoute(args : List<NamedNavArgument> = emptyList()) : String{
         return buildString {

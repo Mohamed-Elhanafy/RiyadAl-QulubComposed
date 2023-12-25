@@ -37,7 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.riyadal_qulub.domain.model.Wird
-import com.example.riyadal_qulub.ui.homeScreen.HomeViewState
+import com.example.riyadal_qulub.ui.screens.homeScreen.HomeViewState
 import com.example.riyadal_qulub.ui.theme.Primary
 import com.example.riyadal_qulub.ui.theme.Secondary
 import com.example.riyadal_qulub.ui.theme.rubikSansFamily

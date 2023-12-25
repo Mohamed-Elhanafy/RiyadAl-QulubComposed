@@ -38,5 +38,6 @@ val Typography = Typography(
 val rubikSansFamily = FontFamily(
     Font(R.font.rubik_italic_variable_font_wght, FontWeight.Light),
     Font(R.font.rubik_variable_font_wght, FontWeight.Normal),
+    Font(R.font.rubik_variable_font_wght_bold, FontWeight.Bold),
 
 )

@@ -1,4 +1,4 @@
-package com.example.riyadal_qulub.ui.homeScreen
+package com.example.riyadal_qulub.ui.screens.homeScreen
 
 import android.util.Log
 import androidx.compose.foundation.layout.Column
@@ -105,7 +105,10 @@ fun HomeScreen(
                                 add(state.selectedDate.value.atStartOfDay())
                             }
                         },
-                        onWirdClicked = { Log.i(TAG, it.name) }, //todo navigate to wird details
+                        onWirdClicked = {
+                            Log.i(TAG, it.name)
+                            navController.navigate(Screen.WirdScreen.route)
+                        },
                         onWirdLongPressed = {
                             Log.i(
                                 TAG,
@@ -118,7 +121,9 @@ fun HomeScreen(
 
                     // Print the selected days for the Wird
                     Log.i("Wird Days", "${wird.value.name}: ${wird.value.wirdDays}")
-                    Log.i("Filtered Wirds", filteredWirds.joinToString { "${it.name}: ${it.wirdDays}" })
+                    Log.i(
+                        "Filtered Wirds",
+                        filteredWirds.joinToString { "${it.name}: ${it.wirdDays}" })
                 }
             }
 

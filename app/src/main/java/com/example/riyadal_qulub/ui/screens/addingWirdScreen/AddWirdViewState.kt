@@ -1,4 +1,4 @@
-package com.example.riyadal_qulub.ui.addingWirdScreen
+package com.example.riyadal_qulub.ui.screens.addingWirdScreen
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf

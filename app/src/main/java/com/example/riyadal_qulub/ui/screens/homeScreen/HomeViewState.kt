@@ -1,4 +1,4 @@
-package com.example.riyadal_qulub.ui.homeScreen
+package com.example.riyadal_qulub.ui.screens.homeScreen
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
