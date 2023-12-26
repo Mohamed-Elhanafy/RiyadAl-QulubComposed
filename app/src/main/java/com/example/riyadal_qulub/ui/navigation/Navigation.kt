@@ -18,6 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.riyadal_qulub.ui.screens.addingWirdScreen.AddWirdScreen
 import com.example.riyadal_qulub.ui.screens.homeScreen.HomeScreen
+import com.example.riyadal_qulub.ui.screens.statisticsScreen.StatisticsScreen
 import com.example.riyadal_qulub.ui.screens.wirdScreen.WirdScreen
 
 @Composable
@@ -61,6 +62,7 @@ fun Navigation(innerPadding: PaddingValues, navController: NavHostController) {
                     .padding(innerPadding),
                 color = MaterialTheme.colorScheme.background
             ) {
+                StatisticsScreen(navController = navController)
 
             }
         }
@@ -78,5 +80,7 @@ fun Navigation(innerPadding: PaddingValues, navController: NavHostController) {
                 }
             }
         }
+
+
     }
 }

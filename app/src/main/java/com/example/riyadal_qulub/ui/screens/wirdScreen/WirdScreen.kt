@@ -19,6 +19,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.riyadal_qulub.ui.components.MonthCalenderItem
+import com.example.riyadal_qulub.ui.theme.Primary
 import com.example.riyadal_qulub.ui.theme.rubikSansFamily
 
 
@@ -35,7 +36,14 @@ fun WirdScreen(
 
     viewModel.getWirdById(wirdId)
     Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = "")
+        Text(
+            modifier = Modifier.padding(16.dp),
+            text = state.wird.name,
+            fontSize = 24.sp,
+            fontFamily = rubikSansFamily,
+            color = Primary
+        )
+        // todo you need to make your calculation for the card info
         Card(
             modifier = Modifier
                 .padding(16.dp)

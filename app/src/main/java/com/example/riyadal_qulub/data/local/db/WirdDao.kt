@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import com.example.riyadal_qulub.domain.model.WeekDays
 import com.example.riyadal_qulub.domain.model.Wird
 import java.time.LocalDateTime
 
@@ -34,4 +35,8 @@ interface WirdDao {
 
     @Query("SELECT * FROM wirds WHERE id = :wirdId")
     fun getWirdById(wirdId: Int): Wird
+
+
+
+
 }

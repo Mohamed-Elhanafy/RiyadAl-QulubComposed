@@ -48,7 +48,8 @@ fun HomeScreen(
 
 
     //todo add loading state
-
+    //todo add empty state
+    //todo fix the bug of the wirds filtering
     Scaffold(
 
         floatingActionButton = {
@@ -109,7 +110,6 @@ fun HomeScreen(
                             Log.i(TAG, it.name)
                             Log.i(TAG, it.id.toString())
                             navController.navigate(Screen.WirdScreen.route(it.id.toString()))
-                            //todo pass the wird to the WirdScreen
                         },
                         onWirdLongPressed = {
                             Log.i(

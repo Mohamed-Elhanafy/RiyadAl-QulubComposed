@@ -1,6 +1,7 @@
 package com.example.riyadal_qulub.data.repository
 
 import com.example.riyadal_qulub.data.local.db.WirdDatabase
+import com.example.riyadal_qulub.domain.model.WeekDays
 import com.example.riyadal_qulub.domain.model.Wird
 import com.example.riyadal_qulub.domain.repository.WirdRepository
 import java.time.LocalDateTime
@@ -39,5 +40,9 @@ class WirdRepositoryImp @Inject constructor(
 
     override suspend fun getWirdById(wirdId: Int): Wird {
         return dao.getWirdById(wirdId)
+    }
+
+    override suspend fun getWirdByWirdDays(wirdDays: List<WeekDays>): List<Wird> {
+        return dao.getAll().filter { it.wirdDays.intersect(wirdDays).isNotEmpty() }
     }
 }

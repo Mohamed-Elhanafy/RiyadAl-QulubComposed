@@ -1,5 +1,6 @@
 package com.example.riyadal_qulub.domain.repository
 
+import com.example.riyadal_qulub.domain.model.WeekDays
 import com.example.riyadal_qulub.domain.model.Wird
 import java.time.LocalDateTime
 
@@ -17,4 +18,6 @@ interface WirdRepository {
     suspend fun updateDoneDates(wirdId: Int, doneDates: List<LocalDateTime>)
 
     suspend fun getWirdById(wirdId: Int): Wird
+
+    suspend fun getWirdByWirdDays(wirdDays: List<WeekDays>): List<Wird>
 }
