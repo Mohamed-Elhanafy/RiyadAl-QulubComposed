@@ -1,6 +1,7 @@
 package com.example.riyadal_qulub.util
 
 import com.example.riyadal_qulub.domain.model.WeekDays
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.time.DayOfWeek
 import java.time.LocalDateTime
@@ -39,5 +40,13 @@ fun convertDayOfWeekToWeekDaysForStatistics(dayOfWeek: DayOfWeek): WeekDays {
         DayOfWeek.FRIDAY -> WeekDays.FRIDAY
         DayOfWeek.SATURDAY -> WeekDays.SATURDAY
         DayOfWeek.SUNDAY -> WeekDays.SUNDAY
+    }
+}
+
+fun simplifyNumber(value: Float): String {
+    return when {
+        value >= 1000 && value < 1_000_000 -> DecimalFormat("0.#K").format(value / 1000)
+        value >= 1_000_000 -> DecimalFormat("0.#M").format(value / 1_000_000)
+        else -> DecimalFormat("0.#").format(value)
     }
 }

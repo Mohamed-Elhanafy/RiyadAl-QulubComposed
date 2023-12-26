@@ -1,6 +1,7 @@
 package com.example.riyadal_qulub.ui.screens.statisticsScreen
 
 import android.util.Log
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.riyadal_qulub.domain.model.WeekDays
@@ -10,6 +11,8 @@ import com.example.riyadal_qulub.util.convertDayOfWeekToWeekDays
 import com.example.riyadal_qulub.util.daysOfWeek
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -25,6 +28,8 @@ class StatisticsViewModel @Inject constructor(
     init {
         getDailyWirdsAndCalculateDonePercentage()
     }
+    private val _state = MutableStateFlow(StatisticsViewState())
+    val state = _state.asStateFlow()
 
     // if the wird day is not selected but it's showing in the home screen
     fun getDailyWirdsAndCalculateDonePercentage() {
@@ -35,6 +40,10 @@ class StatisticsViewModel @Inject constructor(
             // Calculate the start and end of the week
             val startOfWeek = currentDate.with(TemporalAdjusters.previousOrSame(DayOfWeek.SATURDAY))
             val endOfWeek = currentDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.FRIDAY))
+
+            // Create a mutable list for weekPrestating
+            val weekPrestating = mutableListOf<Float>()
+
 
             // For each day of the week
             for (dayOfWeek in daysOfWeek) {
@@ -60,12 +69,17 @@ class StatisticsViewModel @Inject constructor(
                 } else {
                     0
                 }
+                // Add the donePercentage to the weekPrestating list
+                weekPrestating.add(donePercentage.toFloat())
 
                 Log.d(TAG, "Day: $dayOfWeek")
                 //Log.d(TAG, "Daily Wirds: $dailyWirds")
                 //Log.d(TAG, "Done Daily Wirds: $doneDailyWirds")
                 Log.d(TAG, "Done Percentage: $donePercentage%")
+
             }
+            // Update the state with the new weekPrestating list
+            _state.value = StatisticsViewState(weekPrestating)
         }
     }
 

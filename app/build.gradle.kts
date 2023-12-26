@@ -114,4 +114,9 @@ dependencies {
     // The compose calendar library
     implementation("com.kizitonwose.calendar:compose:2.4.0")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+
+
+    //Compose Charts
+    implementation("com.github.tehras:charts:0.2.4-alpha")
+
 }

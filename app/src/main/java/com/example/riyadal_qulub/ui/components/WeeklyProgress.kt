@@ -33,8 +33,9 @@ fun WeeklyProgress(weekPrev: List<Float>) {
     Box {
         Card(
             modifier = Modifier
-                .fillMaxWidth()
-                .shadow(4.dp),
+                .fillMaxWidth(),
+ //               .shadow(2.dp),
+            elevation = CardDefaults.elevatedCardElevation(2.dp),
             colors = CardDefaults.cardColors(Color.White)
         ) {
             Column(
@@ -57,17 +58,16 @@ fun WeeklyProgress(weekPrev: List<Float>) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     AnimatedCircularProgressIndicator(
-                        currentValue = 17,
-                        maxValue = 20,
+                        targetValue = weekPrev[0] / 100,
                         progressBackgroundColor = Purple80,
                         progressIndicatorColor = Primary,
                         day = "السبت",
                         completedColor = Primary
                     )
 
+
                     AnimatedCircularProgressIndicator(
-                        currentValue = 17,
-                        maxValue = 20,
+                       targetValue = weekPrev[1]/100,
                         progressBackgroundColor = Purple80,
                         progressIndicatorColor = Primary,
                         day = "الأحد",
@@ -75,8 +75,7 @@ fun WeeklyProgress(weekPrev: List<Float>) {
                     )
 
                     AnimatedCircularProgressIndicator(
-                        currentValue = 17,
-                        maxValue = 20,
+                        targetValue = weekPrev[2]/100,
                         progressBackgroundColor = Purple80,
                         progressIndicatorColor = Primary,
                         day = "الأثنين",
@@ -84,8 +83,7 @@ fun WeeklyProgress(weekPrev: List<Float>) {
                     )
 
                     AnimatedCircularProgressIndicator(
-                        currentValue = 17,
-                        maxValue = 20,
+                        targetValue = weekPrev[3]/100,
                         progressBackgroundColor = Purple80,
                         progressIndicatorColor = Primary,
                         day = "الثلاثاء",
@@ -94,8 +92,7 @@ fun WeeklyProgress(weekPrev: List<Float>) {
 
 
                     AnimatedCircularProgressIndicator(
-                        currentValue = 17,
-                        maxValue = 20,
+                        targetValue = weekPrev[4]/100,
                         progressBackgroundColor = Purple80,
                         progressIndicatorColor = Primary,
                         day = "الأربعاء",
@@ -104,8 +101,7 @@ fun WeeklyProgress(weekPrev: List<Float>) {
 
 
                     AnimatedCircularProgressIndicator(
-                        currentValue = 17,
-                        maxValue = 20,
+                        targetValue = weekPrev[5]/100,
                         progressBackgroundColor = Purple80,
                         progressIndicatorColor = Primary,
                         day = "الخميس",
@@ -114,8 +110,7 @@ fun WeeklyProgress(weekPrev: List<Float>) {
 
 
                     AnimatedCircularProgressIndicator(
-                        currentValue = 17,
-                        maxValue = 20,
+                        targetValue = weekPrev[6]/100,
                         progressBackgroundColor = Purple80,
                         progressIndicatorColor = Primary,
                         day = "الجمعة",
@@ -133,6 +128,6 @@ fun WeeklyProgress(weekPrev: List<Float>) {
 @Preview
 @Composable
 fun show() {
-    WeeklyProgress(weekPrev = listOf(1f, 2f, 3f, 4f, 5f, 6f, 7f))
+    WeeklyProgress(weekPrev = listOf(0.0f, 33.0f, 0.0f, 100.0f, 20.0f, 0.0f, 0.0f))
 
 }

@@ -29,8 +29,7 @@ import com.example.riyadal_qulub.ui.theme.rubikSansFamily
 
 @Composable
 fun AnimatedCircularProgressIndicator(
-    currentValue: Int,
-    maxValue: Int,
+    targetValue: Float,
     progressBackgroundColor: Color,
     progressIndicatorColor: Color,
     completedColor: Color,
@@ -45,18 +44,17 @@ fun AnimatedCircularProgressIndicator(
 
         Box(modifier = modifier, contentAlignment = Alignment.Center) {
 
-
             val animateFloat = remember { Animatable(0f) }
             LaunchedEffect(animateFloat) {
                 animateFloat.animateTo(
-                    targetValue = currentValue / maxValue.toFloat(),
+                    targetValue = targetValue,
                     animationSpec = tween(durationMillis = 2000, easing = FastOutSlowInEasing)
                 )
             }
 
             Canvas(
                 Modifier
-                    .progressSemantics(currentValue / maxValue.toFloat())
+                    .progressSemantics(targetValue)
                     .size(CircularIndicatorDiameter)
             ) {
                 // Start at 12 O'clock
@@ -70,14 +68,6 @@ fun AnimatedCircularProgressIndicator(
                     radius = size.minDimension / 2.0f - diameterOffset
                 )
                 drawCircularProgressIndicator(startAngle, sweep, progressIndicatorColor, stroke)
-
-                if (currentValue == maxValue) {
-                    drawCircle(
-                        color = completedColor,
-                        style = stroke,
-                        radius = size.minDimension / 2.0f - diameterOffset
-                    )
-                }
             }
         }
         Text(text = day, fontFamily = rubikSansFamily, fontSize = 12.sp, color = Color.Black)
