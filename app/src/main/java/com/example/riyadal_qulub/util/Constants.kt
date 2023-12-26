@@ -22,3 +22,12 @@ val daysOfWeekInArabic = mapOf(
 
 
 // Helper function to convert DayOfWeek to WeekDays
+val daysOfWeek = listOf(
+    DayOfWeek.SATURDAY,
+    DayOfWeek.SUNDAY,
+    DayOfWeek.MONDAY,
+    DayOfWeek.TUESDAY,
+    DayOfWeek.WEDNESDAY,
+    DayOfWeek.THURSDAY,
+    DayOfWeek.FRIDAY
+)

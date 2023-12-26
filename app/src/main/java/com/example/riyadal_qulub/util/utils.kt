@@ -28,3 +28,16 @@ fun convertDayOfWeekToWeekDays(dayOfWeek: DayOfWeek): WeekDays {
         DayOfWeek.SUNDAY -> WeekDays.SUNDAY
     }
 }
+
+
+fun convertDayOfWeekToWeekDaysForStatistics(dayOfWeek: DayOfWeek): WeekDays {
+    return when (dayOfWeek) {
+        DayOfWeek.MONDAY -> WeekDays.MONDAY
+        DayOfWeek.TUESDAY -> WeekDays.TUESDAY
+        DayOfWeek.WEDNESDAY -> WeekDays.WEDNESDAY
+        DayOfWeek.THURSDAY -> WeekDays.THURSDAY
+        DayOfWeek.FRIDAY -> WeekDays.FRIDAY
+        DayOfWeek.SATURDAY -> WeekDays.SATURDAY
+        DayOfWeek.SUNDAY -> WeekDays.SUNDAY
+    }
+}
