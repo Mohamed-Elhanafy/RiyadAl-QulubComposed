@@ -2,6 +2,7 @@ package com.example.riyadal_qulub.ui.screens.homeScreen
 
 import android.util.Log
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -35,6 +36,7 @@ private const val TAG = "HomeScreen"
 
 @Composable
 fun HomeScreen(
+    padding :PaddingValues,
     viewModel: HomeViewModel = hiltViewModel(),
     navController: NavController
 ) {
@@ -51,7 +53,9 @@ fun HomeScreen(
     //todo add empty state
     //todo fix the bug of the wirds filtering
     Scaffold(
-
+        modifier = Modifier
+            .padding(padding)
+            .fillMaxSize(),
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { navController.navigate(Screen.AddWirdScreen.route) },
@@ -110,6 +114,7 @@ fun HomeScreen(
                             Log.i(TAG, it.name)
                             Log.i(TAG, it.id.toString())
                             navController.navigate(Screen.WirdScreen.route(it.id.toString()))
+
                         },
                         onWirdLongPressed = {
                             Log.i(

@@ -3,6 +3,7 @@ package com.example.riyadal_qulub.ui.screens.statisticsScreen
 import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,6 +25,7 @@ private const val TAG = "StatisticsScreen"
 
 @Composable
 fun StatisticsScreen(
+    padding: PaddingValues,
     viewModel: StatisticsViewModel = hiltViewModel(),
     navController: NavController
 ) {
@@ -43,7 +45,10 @@ fun StatisticsScreen(
     )
     Log.d(TAG, "Week Percentage: ${state.weekPercentage}")
     if (state.weekPercentage != listOf(0f, 0f, 0f, 0f, 0f, 0f, 0f)) {
-        Column(modifier = Modifier.padding(16.dp).fillMaxSize()) {
+        Column(modifier = Modifier
+            .padding(padding)
+            .padding(16.dp)
+            .fillMaxSize()) {
             WeeklyProgress(
                 weekPrev = state.weekPercentage
             )
