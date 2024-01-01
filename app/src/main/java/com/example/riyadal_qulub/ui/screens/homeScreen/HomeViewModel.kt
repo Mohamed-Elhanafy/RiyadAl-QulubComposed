@@ -17,7 +17,7 @@ import javax.inject.Inject
 private const val TAG = "HomeViewModel"
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+open class HomeViewModel @Inject constructor(
     private val repository: WirdRepository,
 //    private val database : WirdDatabase
 ) : ViewModel() {

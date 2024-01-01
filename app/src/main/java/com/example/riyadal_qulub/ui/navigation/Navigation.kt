@@ -26,7 +26,7 @@ fun Navigation(innerPadding: PaddingValues, navController: NavHostController) {
 
     NavHost(navController = navController, startDestination = Screen.HomeScreen.route) {
         composable(Screen.HomeScreen.route) {
-            HomeScreen(navController = navController , padding = innerPadding)
+            HomeScreen(navController = navController, padding = innerPadding)
         }
         composable(Screen.AddWirdScreen.route) {
             AddWirdScreen(navController = navController)
@@ -35,20 +35,13 @@ fun Navigation(innerPadding: PaddingValues, navController: NavHostController) {
 
         }
         composable(Screen.StatisticsScreen.route) {
-            StatisticsScreen(navController = navController , padding = innerPadding)
+            StatisticsScreen(navController = navController, padding = innerPadding)
         }
         composable(Screen.WirdScreen.route("{wirdId}")) { backStackEntry ->
-            Surface(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding),
-                color = MaterialTheme.colorScheme.background
-            ) {
-                val arguments = backStackEntry.arguments
-                val wirdId = arguments?.getString("wirdId")
-                if (wirdId != null) {
-                    WirdScreen(wirdId = wirdId.toInt(), navController = navController)
-                }
+            val arguments = backStackEntry.arguments
+            val wirdId = arguments?.getString("wirdId")
+            if (wirdId != null) {
+                WirdScreen(wirdId = wirdId.toInt(), navController = navController)
             }
         }
 

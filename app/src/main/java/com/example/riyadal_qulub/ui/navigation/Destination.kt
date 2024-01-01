@@ -14,14 +14,5 @@ sealed class Screen(val route: String) {
     object WirdScreen : Screen("wird_screen/{wirdId}") {
         fun route(wirdId: String) = "wird_screen/$wirdId"
     }
-
-    fun createRoute(args: List<NamedNavArgument> = emptyList()): String {
-        return buildString {
-            append(route)
-            args.forEach { arg ->
-                append("/${arg.name}")
-            }
-        }
-    }
 }
 
