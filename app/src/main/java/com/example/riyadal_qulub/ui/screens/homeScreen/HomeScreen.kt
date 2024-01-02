@@ -36,6 +36,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.riyadal_qulub.R
+import com.example.riyadal_qulub.ui.components.AlertDialogExample
 import com.example.riyadal_qulub.ui.components.WeeklyCalendarItem
 import com.example.riyadal_qulub.ui.components.WirdItem
 import com.example.riyadal_qulub.ui.navigation.Screen
@@ -61,6 +62,7 @@ fun HomeScreen(
         startDate = LocalDate.now(),
         endDate = LocalDate.now().plusDays(6)
     )
+    val openAlertDialog = remember { mutableStateOf(false) }
 
 
     //todo add loading state
@@ -135,9 +137,24 @@ fun HomeScreen(
                                 TAG,
                                 "wird."
                             )
-                        }, //todo show dialog to delete or edit
+                            openAlertDialog.value = true
+                        },
                         state = state
                     )
+
+                    when {
+                        openAlertDialog.value -> {
+                            AlertDialogExample(
+                                onDismissRequest = { openAlertDialog.value = false },
+                                onConfirmation = {
+                                    openAlertDialog.value = false
+                                    viewModel.deleteWird(wird.value)
+                                },
+                                dialogTitle = "حذف الورد",
+                                dialogText = "هل تريد حذف الورد؟",
+                            )
+                        }
+                    }
                     Spacer(modifier = Modifier.padding(vertical = 8.dp))
 
                     // Print the selected days for the Wird
@@ -149,6 +166,7 @@ fun HomeScreen(
 
 
             }
+
 
             if (filteredWirds.isEmpty()) {
                 Column(

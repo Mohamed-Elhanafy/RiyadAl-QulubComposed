@@ -45,6 +45,14 @@ open class HomeViewModel @Inject constructor(
         }
     }
 
+
+    fun deleteWird(wird: Wird) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteWird(wird)
+            _state.value = state.value.copy(wirds = state.value.wirds.filter { it.id != wird.id })
+        }
+    }
+
     init {
         getWirds()
     }
