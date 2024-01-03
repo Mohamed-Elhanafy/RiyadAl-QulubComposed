@@ -1,5 +1,6 @@
 package com.example.riyadal_qulub.ui.navigation
 
+import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -18,13 +19,21 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.riyadal_qulub.ui.screens.addingWirdScreen.AddWirdScreen
 import com.example.riyadal_qulub.ui.screens.homeScreen.HomeScreen
+import com.example.riyadal_qulub.ui.screens.onBoarding.OnBoardingScreen
 import com.example.riyadal_qulub.ui.screens.statisticsScreen.StatisticsScreen
 import com.example.riyadal_qulub.ui.screens.wirdScreen.WirdScreen
 
 @Composable
-fun Navigation(innerPadding: PaddingValues, navController: NavHostController) {
+fun Navigation(innerPadding: PaddingValues, navController: NavHostController,context: Context) {
 
-    NavHost(navController = navController, startDestination = Screen.HomeScreen.route) {
+    val sharedPreferences = context.getSharedPreferences("MyApp", Context.MODE_PRIVATE)
+    val hasSeenOnboarding = sharedPreferences.getBoolean("hasSeenOnboarding", false)
+    val startDestination = if (hasSeenOnboarding) Screen.HomeScreen.route else Screen.OnBoardingScreen.route
+
+    NavHost(navController = navController, startDestination = startDestination) {
+        composable(Screen.OnBoardingScreen.route) {
+            OnBoardingScreen(navController = navController , context = context)
+        }
         composable(Screen.HomeScreen.route) {
             HomeScreen(navController = navController, padding = innerPadding)
         }

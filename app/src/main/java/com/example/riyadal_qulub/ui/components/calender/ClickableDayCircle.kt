@@ -1,4 +1,4 @@
-package com.example.riyadal_qulub.ui.components
+package com.example.riyadal_qulub.ui.components.calender
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.clickable

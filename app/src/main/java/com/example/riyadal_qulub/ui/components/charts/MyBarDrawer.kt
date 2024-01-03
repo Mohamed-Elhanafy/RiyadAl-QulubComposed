@@ -1,4 +1,4 @@
-package com.example.riyadal_qulub.ui.components
+package com.example.riyadal_qulub.ui.components.charts
 
 
 import androidx.compose.ui.geometry.Rect

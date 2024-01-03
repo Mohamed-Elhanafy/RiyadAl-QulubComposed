@@ -11,6 +11,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import com.example.riyadal_qulub.R
+import com.example.riyadal_qulub.ui.theme.Primary
 import com.example.riyadal_qulub.ui.theme.Secondary
 import com.example.riyadal_qulub.ui.theme.rubikSansFamily
 
@@ -18,7 +19,8 @@ import com.example.riyadal_qulub.ui.theme.rubikSansFamily
 @Composable
 fun NavBar(backStackEntry: NavBackStackEntry?, navController: NavController) {
     NavigationBar(
-        containerColor = Secondary
+        containerColor = Secondary,
+        contentColor = Primary
     ) {
 
 

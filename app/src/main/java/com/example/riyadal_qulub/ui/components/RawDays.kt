@@ -6,16 +6,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.riyadal_qulub.domain.model.WeekDays
+import com.example.riyadal_qulub.ui.components.calender.ClickableDayCircle
 import com.example.riyadal_qulub.util.daysOfWeekInArabic
-import java.time.DayOfWeek
-import java.time.LocalDateTime
-import java.time.format.TextStyle
-import java.util.Locale
 
 @Composable
 fun ClickableWeekDays(

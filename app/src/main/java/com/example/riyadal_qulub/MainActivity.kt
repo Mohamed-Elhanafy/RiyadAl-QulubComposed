@@ -12,6 +12,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.riyadal_qulub.ui.navigation.NavBar
 import com.example.riyadal_qulub.ui.navigation.Navigation
+import com.example.riyadal_qulub.ui.navigation.Screen
 import com.example.riyadal_qulub.ui.theme.RiyadAlQulubcomposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +28,13 @@ class MainActivity : ComponentActivity() {
             RiyadAlQulubcomposeTheme {
                 val navController = rememberNavController()
                 val backStackEntry by navController.currentBackStackEntryAsState()
-                val showBottomBar by rememberSaveable { mutableStateOf(true) }
+                var showBottomBar by rememberSaveable { mutableStateOf(true) }
+
+                //to hide bottom bar in onboarding screen
+                showBottomBar = when (backStackEntry?.destination?.route) {
+                    Screen.OnBoardingScreen.route -> false
+                    else -> true
+                }
 
                 Scaffold(
                     bottomBar = {
@@ -36,7 +43,7 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 ) { innerPadding ->
-                    Navigation(innerPadding, navController = navController)
+                    Navigation(innerPadding, navController = navController, context = this)
                 }
             }
         }

@@ -1,4 +1,4 @@
-package com.example.riyadal_qulub.ui.components
+package com.example.riyadal_qulub.ui.components.dialogs
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
