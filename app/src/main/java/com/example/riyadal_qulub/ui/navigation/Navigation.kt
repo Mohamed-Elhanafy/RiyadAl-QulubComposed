@@ -34,6 +34,7 @@ fun Navigation(innerPadding: PaddingValues, navController: NavHostController,con
         composable(Screen.OnBoardingScreen.route) {
             OnBoardingScreen(navController = navController , context = context)
         }
+
         composable(Screen.HomeScreen.route) {
             HomeScreen(navController = navController, padding = innerPadding)
         }
