@@ -3,6 +3,7 @@ package com.example.riyadal_qulub.di
 import android.app.Application
 import androidx.room.Room
 import com.example.riyadal_qulub.data.local.db.WirdDatabase
+import com.google.firebase.auth.FirebaseAuth
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -21,6 +22,12 @@ object AppModule {
             WirdDatabase::class.java,
             "wird_db.db"
         ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAuth(): FirebaseAuth {
+        return FirebaseAuth.getInstance()
     }
 
 }

@@ -18,21 +18,23 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.riyadal_qulub.ui.screens.addingWirdScreen.AddWirdScreen
+import com.example.riyadal_qulub.ui.screens.authenticate.signin.SignInScreen
 import com.example.riyadal_qulub.ui.screens.homeScreen.HomeScreen
 import com.example.riyadal_qulub.ui.screens.onBoarding.OnBoardingScreen
 import com.example.riyadal_qulub.ui.screens.statisticsScreen.StatisticsScreen
 import com.example.riyadal_qulub.ui.screens.wirdScreen.WirdScreen
 
 @Composable
-fun Navigation(innerPadding: PaddingValues, navController: NavHostController,context: Context) {
+fun Navigation(innerPadding: PaddingValues, navController: NavHostController, context: Context) {
 
     val sharedPreferences = context.getSharedPreferences("MyApp", Context.MODE_PRIVATE)
     val hasSeenOnboarding = sharedPreferences.getBoolean("hasSeenOnboarding", false)
-    val startDestination = if (hasSeenOnboarding) Screen.HomeScreen.route else Screen.OnBoardingScreen.route
+    val startDestination =
+        if (hasSeenOnboarding) Screen.HomeScreen.route else Screen.OnBoardingScreen.route
 
     NavHost(navController = navController, startDestination = startDestination) {
         composable(Screen.OnBoardingScreen.route) {
-            OnBoardingScreen(navController = navController , context = context)
+            OnBoardingScreen(navController = navController, context = context)
         }
 
         composable(Screen.HomeScreen.route) {
@@ -53,6 +55,14 @@ fun Navigation(innerPadding: PaddingValues, navController: NavHostController,con
             if (wirdId != null) {
                 WirdScreen(wirdId = wirdId.toInt(), navController = navController)
             }
+        }
+
+        composable(Screen.SignInScreen.route) {
+            SignInScreen(navController = navController)
+        }
+
+        composable(Screen.SignUpScreen.route) {
+
         }
 
 

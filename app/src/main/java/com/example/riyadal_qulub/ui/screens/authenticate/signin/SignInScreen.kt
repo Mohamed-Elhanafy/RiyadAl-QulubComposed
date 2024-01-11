@@ -1,7 +1,7 @@
-package com.example.riyadal_qulub.ui.screens.authenticate
+package com.example.riyadal_qulub.ui.screens.authenticate.signin
 
+import android.util.Log
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,8 +11,8 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,12 +27,25 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import com.example.riyadal_qulub.R
+import com.example.riyadal_qulub.ui.navigation.Screen
 import com.example.riyadal_qulub.ui.theme.Primary
 import com.example.riyadal_qulub.ui.theme.rubikSansFamily
 
 @Composable
-fun SignInScreen() {
+fun SignInScreen(
+    viewModel: SignInViewModel = hiltViewModel(), navController: NavController
+) {
+
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    val signInResult by viewModel.signInResult.collectAsState()
+
+
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -56,17 +69,9 @@ fun SignInScreen() {
         )
 
         OutlinedTextField(
-            value = "",
-            onValueChange = { },
+            value = state.email,
+            onValueChange = { viewModel.updateEmail(it) },
             modifier = Modifier.fillMaxWidth(),
-            label = {
-                /* Text(
-                     text = "اسم الورد",
-                     fontFamily = rubikSansFamily,
-                     textAlign = TextAlign.Right,
-                     modifier = Modifier.fillMaxWidth()
-                 )*/
-            },
             placeholder = {
                 Text(
                     text = "email",
@@ -78,10 +83,9 @@ fun SignInScreen() {
 
         Spacer(modifier = Modifier.padding(16.dp))
 
-        var textInput by remember { mutableStateOf("") }
         OutlinedTextField(
-            value = textInput,
-            onValueChange = { textInput = it },
+            value = state.password,
+            onValueChange = { viewModel.updatePassword(it) },
             placeholder = { Text("Password") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             visualTransformation = PasswordVisualTransformation(),
@@ -103,20 +107,34 @@ fun SignInScreen() {
 
         Spacer(modifier = Modifier.padding(16.dp))
 
-        Button(onClick = { /*TODO*/ }, modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)) {
+        Button(
+            onClick = { viewModel.signIn(state.email, state.password) }, modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
             Text(text = "تسجيل الدخول", fontFamily = rubikSansFamily, fontSize = 16.sp)
         }
+
+        if (signInResult == "Success") {
+            navController.navigate(Screen.HomeScreen.route)
+
+        } else if (signInResult == "Failure") {
+            // Handle failure
+        }
+
     }
 }
 
 
+/*
+
 @Preview
 @Composable
 fun SignInScreenPreview() {
-    SignInScreen()
+    SignInScreen(
+    )
 }
+*/
 
 
 
