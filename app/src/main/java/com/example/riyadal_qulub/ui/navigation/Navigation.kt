@@ -2,23 +2,14 @@ package com.example.riyadal_qulub.ui.navigation
 
 import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.example.riyadal_qulub.ui.screens.addingWirdScreen.AddWirdScreen
 import com.example.riyadal_qulub.ui.screens.authenticate.signin.SignInScreen
+import com.example.riyadal_qulub.ui.screens.authenticate.signup.SignUpScreen
 import com.example.riyadal_qulub.ui.screens.homeScreen.HomeScreen
 import com.example.riyadal_qulub.ui.screens.onBoarding.OnBoardingScreen
 import com.example.riyadal_qulub.ui.screens.statisticsScreen.StatisticsScreen
@@ -29,9 +20,14 @@ fun Navigation(innerPadding: PaddingValues, navController: NavHostController, co
 
     val sharedPreferences = context.getSharedPreferences("MyApp", Context.MODE_PRIVATE)
     val hasSeenOnboarding = sharedPreferences.getBoolean("hasSeenOnboarding", false)
-    val startDestination =
-        if (hasSeenOnboarding) Screen.HomeScreen.route else Screen.OnBoardingScreen.route
+    val hasSignedIn = sharedPreferences.getBoolean("hasSignedIn", false)
 
+    val startDestination =
+        when {
+            !hasSeenOnboarding -> Screen.OnBoardingScreen.route
+            !hasSignedIn -> Screen.SignInScreen.route
+            else -> Screen.HomeScreen.route
+        }
     NavHost(navController = navController, startDestination = startDestination) {
         composable(Screen.OnBoardingScreen.route) {
             OnBoardingScreen(navController = navController, context = context)
@@ -58,11 +54,11 @@ fun Navigation(innerPadding: PaddingValues, navController: NavHostController, co
         }
 
         composable(Screen.SignInScreen.route) {
-            SignInScreen(navController = navController)
+            SignInScreen(navController = navController, context = context)
         }
 
         composable(Screen.SignUpScreen.route) {
-
+            SignUpScreen(navController = navController , context = context)
         }
 
 

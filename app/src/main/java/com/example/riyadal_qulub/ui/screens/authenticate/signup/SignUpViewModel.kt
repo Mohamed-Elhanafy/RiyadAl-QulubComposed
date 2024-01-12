@@ -1,8 +1,8 @@
-package com.example.riyadal_qulub.ui.screens.authenticate.signin
+package com.example.riyadal_qulub.ui.screens.authenticate.signup
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.riyadal_qulub.ui.screens.authenticate.signin.SignInViewState
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,34 +11,27 @@ import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 
-const val TAG = "signInViewModel"
+const val TAG = "signUpViewModel"
 @HiltViewModel
-class SignInViewModel @Inject constructor(
+class SignUpViewModel @Inject constructor(
     val auth: FirebaseAuth
-
 ) : ViewModel() {
 
-    private val _signInResult = MutableStateFlow<String?>(null)
-    val signInResult: StateFlow<String?> get() = _signInResult
+    private val _signUpResult = MutableStateFlow<String?>(null)
+    val signUpResult: StateFlow<String?> get() = _signUpResult
 
     private val _state = MutableStateFlow(SignInViewState())
     val state = _state.asStateFlow()
-
-
-
-
-
-    fun signIn(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password)
+    fun signUp(email: String, password: String) {
+        auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "createUserWithEmail:success")
-                    _signInResult.value = "Success"
+                    _signUpResult.value = "Success"
                 } else {
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    _signInResult.value = "Failure"
+                    _signUpResult.value = "Failure"
                 }
-
             }
     }
 

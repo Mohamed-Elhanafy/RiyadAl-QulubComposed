@@ -33,6 +33,8 @@ class MainActivity : ComponentActivity() {
                 //to hide bottom bar in onboarding screen
                 showBottomBar = when (backStackEntry?.destination?.route) {
                     Screen.OnBoardingScreen.route -> false
+                    Screen.SignInScreen.route -> false
+                    Screen.SignUpScreen.route -> false
                     else -> true
                 }
 

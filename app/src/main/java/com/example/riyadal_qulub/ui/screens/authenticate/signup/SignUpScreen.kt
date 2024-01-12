@@ -1,6 +1,7 @@
-package com.example.riyadal_qulub.ui.screens.authenticate.signin
+package com.example.riyadal_qulub.ui.screens.authenticate.signup
 
 import android.content.Context
+import com.example.riyadal_qulub.ui.screens.authenticate.signin.SignInViewModel
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -38,17 +39,16 @@ import com.example.riyadal_qulub.ui.theme.Primary
 import com.example.riyadal_qulub.ui.theme.rubikSansFamily
 
 @Composable
-fun SignInScreen(
-    viewModel: SignInViewModel = hiltViewModel(), navController: NavController,context: Context
+fun SignUpScreen(
+    viewModel: SignUpViewModel = hiltViewModel(), navController: NavController ,context: Context
 ) {
 
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    val signInResult by viewModel.signInResult.collectAsState()
+    val signInResult by viewModel.signUpResult.collectAsState()
 
     val sharedPreferences = context.getSharedPreferences("MyApp", Context.MODE_PRIVATE)
     val editor = sharedPreferences.edit()
-
 
 
     Column(
@@ -58,7 +58,7 @@ fun SignInScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "تسجيل الدخول",
+            text = "تسجيل حساب جديد",
             textAlign = TextAlign.Center,
             fontSize = 40.sp,
             fontFamily = rubikSansFamily,
@@ -67,11 +67,6 @@ fun SignInScreen(
             color = Primary
         )
 
-        Image(
-            painter = painterResource(id = R.drawable.img_auth),
-            contentDescription = "auth img",
-            modifier = Modifier.padding(16.dp)
-        )
 
         OutlinedTextField(
             value = state.email,
@@ -91,7 +86,14 @@ fun SignInScreen(
         OutlinedTextField(
             value = state.password,
             onValueChange = { viewModel.updatePassword(it) },
-            placeholder = { Text("Password") },
+            placeholder = {
+                Text(
+                    text = "password",
+                    fontFamily = rubikSansFamily,
+                    textAlign = TextAlign.Right,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier
@@ -102,13 +104,11 @@ fun SignInScreen(
         Spacer(modifier = Modifier.padding(16.dp))
 
         Text(
-            text = "هل انت مستخدم جديد؟ سجل حساب ",
+            text = "تملك حساباً بالفعل ؟ سجل دخول ",
             textAlign = TextAlign.Right,
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable {
-                    navController.navigate(Screen.SignUpScreen.route)
-                },
+            modifier = Modifier.fillMaxWidth().clickable {
+                navController.navigate(Screen.SignInScreen.route)
+            },
             fontFamily = rubikSansFamily,
             fontSize = 16.sp,
             color = Primary
@@ -117,11 +117,11 @@ fun SignInScreen(
         Spacer(modifier = Modifier.padding(16.dp))
 
         Button(
-            onClick = { viewModel.signIn(state.email, state.password) }, modifier = Modifier
+            onClick = { viewModel.signUp(state.email, state.password) }, modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            Text(text = "تسجيل حساب جديد", fontFamily = rubikSansFamily, fontSize = 16.sp)
+            Text(text = "تسجيل الدخول", fontFamily = rubikSansFamily, fontSize = 16.sp)
         }
 
         if (signInResult == "Success") {
@@ -131,9 +131,8 @@ fun SignInScreen(
                 true
             )
             editor.apply()
-
         } else if (signInResult == "Failure") {
-            // Handle failure
+            // todo Handle failure and loading
         }
 
     }
