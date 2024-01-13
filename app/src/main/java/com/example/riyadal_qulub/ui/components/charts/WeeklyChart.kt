@@ -54,44 +54,44 @@ fun WeeklyChart(
                     color = Primary,
                 ),
                 BarChartData.Bar(
-                    label = DayOfWeek.TUESDAY.name.substring(0, 1),
+                    label = "الاحد",
                     value = sunday
                         ?: 0f,
                     color = Primary
                 ),
                 BarChartData.Bar(
-                    label = DayOfWeek.WEDNESDAY.name.substring(0, 1),
+                    label = "الاثنين",
                     value = monday
                         ?: 0f,
                     color = Primary
                 ),
                 BarChartData.Bar(
-                    label = DayOfWeek.THURSDAY.name.substring(0, 1),
+                    label = "الثلاثاء",
                     value = tuesday
                         ?: 0f,
                     color = Primary
                 ),
                 BarChartData.Bar(
-                    label = DayOfWeek.FRIDAY.name.substring(0, 1),
+                    label = "الأربعاء",
                     value = wednesday
                         ?: 0f,
                     color = Primary
                 ),
                 BarChartData.Bar(
-                    label = DayOfWeek.SATURDAY.name.substring(0, 1),
+                    label = "الخميس",
                     value = thursday
                         ?: 0f,
                     color = Primary
                 ),
                 BarChartData.Bar(
-                    label = DayOfWeek.SUNDAY.name.substring(0, 1),
+                    label = "الجمعة",
                     value = friday
                         ?: 0f,
                     color = Primary
                 ),
             )
         ),
-        //labelDrawer = LabelDrawer(),
+        labelDrawer = MyLabelDrawer(),
         /* yAxisDrawer = SimpleYAxisDrawer(
              labelValueFormatter = ::simplifyNumber,
              labelRatio = 7,
