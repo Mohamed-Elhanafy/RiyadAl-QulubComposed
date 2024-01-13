@@ -1,5 +1,7 @@
 package com.example.riyadal_qulub.ui.screens.settings
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,14 +22,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.riyadal_qulub.R
 import com.example.riyadal_qulub.ui.theme.Primary
 import com.example.riyadal_qulub.ui.theme.rubikSansFamily
 
 @Composable
 fun SettingsScreen(
-
+    viewModel: SettingViewModel = hiltViewModel(),
+    context: Context
 ) {
+
+    val sharedPreferences = context.getSharedPreferences("MyApp", Context.MODE_PRIVATE)
+    val editor = sharedPreferences.edit()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -43,8 +51,18 @@ fun SettingsScreen(
             color = Primary
         )
 
-        SettingsItem("تسجيل الخروج")
-        SettingsItem("مسح كل الأوراد")
+        SettingsItem("تسجيل الخروج",
+            onClick = {
+                viewModel.logout()
+                changeTheSharedPrefrences(editor)
+            }
+        )
+        SettingsItem("مسح كل الأوراد",
+            //todo: add dialog to confirm
+            onClick = {
+                viewModel.deleteAllWirds()
+            }
+        )
         SettingsItem("التنبيهات")
         SettingsItem("تواصل معنا")
         SettingsItem("سياسة الخصوصية")
@@ -56,14 +74,23 @@ fun SettingsScreen(
 }
 
 
+private fun changeTheSharedPrefrences(editor: SharedPreferences.Editor) {
+    editor.putBoolean(
+        "hasSignedIn",
+        false
+    )
+    editor.apply()
+}
+
+
 @Composable
-fun SettingsItem(name: String, onClick: () -> Unit ={}) {
+fun SettingsItem(name: String, onClick: () -> Unit = {}) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 16.dp)
             .clickable {
-                       onClick()
+                onClick()
             },
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically

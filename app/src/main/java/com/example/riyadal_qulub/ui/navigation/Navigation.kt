@@ -41,7 +41,7 @@ fun Navigation(innerPadding: PaddingValues, navController: NavHostController, co
             AddWirdScreen(navController = navController)
         }
         composable(Screen.SettingsScreen.route) {
-            SettingsScreen()
+            SettingsScreen(context = context)
         }
         composable(Screen.StatisticsScreen.route) {
             StatisticsScreen(navController = navController, padding = innerPadding)

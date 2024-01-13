@@ -20,4 +20,6 @@ interface WirdRepository {
     suspend fun getWirdById(wirdId: Int): Wird
 
     suspend fun getWirdByWirdDays(wirdDays: List<WeekDays>): List<Wird>
+
+    suspend fun deleteAllWirds()
 }

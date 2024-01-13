@@ -19,6 +19,9 @@ interface WirdDao {
     @Delete
     fun delete(wird: Wird)
 
+    @Query("DELETE FROM wirds")
+    fun deleteAllWirds()
+
 /*    @Query("UPDATE wirds SET doneDays = :doneDays WHERE id = :wirdId")
     fun updateDoneDays(wirdId: Int, doneDays: List<LocalDateTime>)*/
 

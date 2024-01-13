@@ -45,4 +45,8 @@ class WirdRepositoryImp @Inject constructor(
     override suspend fun getWirdByWirdDays(wirdDays: List<WeekDays>): List<Wird> {
         return dao.getAll().filter { it.wirdDays.intersect(wirdDays).isNotEmpty() }
     }
+
+    override suspend fun deleteAllWirds() {
+        dao.deleteAllWirds()
+    }
 }
