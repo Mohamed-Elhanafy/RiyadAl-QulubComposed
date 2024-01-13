@@ -12,6 +12,7 @@ import com.example.riyadal_qulub.ui.screens.authenticate.signin.SignInScreen
 import com.example.riyadal_qulub.ui.screens.authenticate.signup.SignUpScreen
 import com.example.riyadal_qulub.ui.screens.homeScreen.HomeScreen
 import com.example.riyadal_qulub.ui.screens.onBoarding.OnBoardingScreen
+import com.example.riyadal_qulub.ui.screens.settings.SettingsScreen
 import com.example.riyadal_qulub.ui.screens.statisticsScreen.StatisticsScreen
 import com.example.riyadal_qulub.ui.screens.wirdScreen.WirdScreen
 
@@ -40,7 +41,7 @@ fun Navigation(innerPadding: PaddingValues, navController: NavHostController, co
             AddWirdScreen(navController = navController)
         }
         composable(Screen.SettingsScreen.route) {
-
+            SettingsScreen()
         }
         composable(Screen.StatisticsScreen.route) {
             StatisticsScreen(navController = navController, padding = innerPadding)
