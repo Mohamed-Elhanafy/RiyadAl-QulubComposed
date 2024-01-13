@@ -58,6 +58,25 @@ fun StatisticsScreen(
                 state.weekPercentage[6]
             )
         }
+    }else{
+        Column(modifier = Modifier
+            .padding(padding)
+            .padding(16.dp)
+            .fillMaxSize()) {
+            WeeklyProgress(
+                weekPrev = listOf(0f,0f,0f,0f,0f,0f,0f)
+            )
+            Spacer(modifier = Modifier.padding(16.dp))
+            WeeklyChart(
+                0f,
+                0f,
+                0f,
+                0f,
+                0f,
+                0f,
+                0f
+            )
+        }
     }
 
 
