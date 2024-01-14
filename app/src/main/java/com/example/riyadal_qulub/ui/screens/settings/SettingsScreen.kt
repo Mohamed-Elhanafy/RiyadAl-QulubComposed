@@ -10,10 +10,13 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.riyadal_qulub.R
+import com.example.riyadal_qulub.ui.components.dialogs.AlertDialogExample
 import com.example.riyadal_qulub.ui.theme.Primary
 import com.example.riyadal_qulub.ui.theme.rubikSansFamily
 
@@ -35,6 +39,9 @@ fun SettingsScreen(
 
     val sharedPreferences = context.getSharedPreferences("MyApp", Context.MODE_PRIVATE)
     val editor = sharedPreferences.edit()
+
+
+    val openAlertDialog = remember { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -57,16 +64,33 @@ fun SettingsScreen(
                 changeTheSharedPrefrences(editor)
             }
         )
-        SettingsItem("مسح كل الأوراد",
+        SettingsItem(
+            "مسح جميع الأوراد",
             //todo: add dialog to confirm
             onClick = {
-                viewModel.deleteAllWirds()
-            }
+                openAlertDialog.value = true
+            },
+            color = Color.Red
         )
+        when {
+            openAlertDialog.value -> {
+                AlertDialogExample(
+                    onDismissRequest = { openAlertDialog.value = false },
+                    onConfirmation = {
+                        openAlertDialog.value = false
+                        viewModel.deleteAllWirds()
+                    },
+                    dialogTitle = "حذف جميع الأوراد",
+                    dialogText = "هل انت متأكد من حذف جميع الأوراد ؟"
+                )
+            }
+        }
+
+
         SettingsItem("التنبيهات")
         SettingsItem("تواصل معنا")
         SettingsItem("سياسة الخصوصية")
-        SettingsItem("تغيير اللغة")
+     //   SettingsItem("تغيير اللغة")
 
 
     }
@@ -84,7 +108,7 @@ private fun changeTheSharedPrefrences(editor: SharedPreferences.Editor) {
 
 
 @Composable
-fun SettingsItem(name: String, onClick: () -> Unit = {}) {
+fun SettingsItem(name: String, onClick: () -> Unit = {}, color: Color = Color.Black) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -95,14 +119,18 @@ fun SettingsItem(name: String, onClick: () -> Unit = {}) {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Icon(painter = painterResource(id = R.drawable.ic_arrow), contentDescription = "arrow")
+        Icon(
+            painter = painterResource(id = R.drawable.ic_arrow),
+            contentDescription = "arrow",
+            tint = color
+        )
         Text(
             text = name,
             textAlign = TextAlign.Right,
             fontSize = 20.sp,
             fontFamily = rubikSansFamily,
             modifier = Modifier.fillMaxWidth(),
-            color = Color.Black
+            color = color
         )
     }
     Spacer(modifier = Modifier.padding(8.dp))

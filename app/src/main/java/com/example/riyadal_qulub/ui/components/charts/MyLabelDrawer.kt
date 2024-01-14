@@ -12,7 +12,7 @@ import com.github.tehras.charts.piechart.utils.toLegacyInt
 
 class MyLabelDrawer :
     com.github.tehras.charts.bar.renderer.label.LabelDrawer {
-    private val leftOffset = 50f
+    private val leftOffset = 45f
 
 
     override fun drawLabel(
