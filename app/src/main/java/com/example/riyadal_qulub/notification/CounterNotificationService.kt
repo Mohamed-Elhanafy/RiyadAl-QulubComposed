@@ -54,6 +54,6 @@ class CounterNotificationService(private val context: Context) {
     companion object {
         const val CHANNEL_ID = "counter_notification"
         const val CHANNEL_NAME = "Counter"
-        const val CHANNEL_DESCRIPTION = "this is to show counter notification"
+        const val CHANNEL_DESCRIPTION = "this is to show the wird notifications"
     }
 }

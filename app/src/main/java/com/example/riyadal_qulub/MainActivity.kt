@@ -17,11 +17,14 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.riyadal_qulub.notification.CounterNotificationService
+import com.example.riyadal_qulub.notification.alarm.AlarmItem
+import com.example.riyadal_qulub.notification.alarm.AndroidAlarmScheduler
 import com.example.riyadal_qulub.ui.navigation.NavBar
 import com.example.riyadal_qulub.ui.navigation.Navigation
 import com.example.riyadal_qulub.ui.navigation.Screen
 import com.example.riyadal_qulub.ui.theme.RiyadAlQulubcomposeTheme
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDateTime
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -64,6 +67,7 @@ class MainActivity : ComponentActivity() {
                 requestPermissions(
                     arrayOf(
                         android.Manifest.permission.POST_NOTIFICATIONS,
+                        android.Manifest.permission.SCHEDULE_EXACT_ALARM,
                     ), 99
                 )
             }
