@@ -1,5 +1,6 @@
 package com.example.riyadal_qulub.ui.screens.addingWirdScreen
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,7 +20,9 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TimeInput
 import androidx.compose.material3.rememberDatePickerState
+import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,18 +41,25 @@ import androidx.navigation.NavController
 import com.example.riyadal_qulub.R
 import com.example.riyadal_qulub.ui.components.ClickableWeekDays
 import com.example.riyadal_qulub.ui.components.dialogs.MyDatePickerDialog
+import com.example.riyadal_qulub.ui.components.dialogs.TimePickerDialog
 import com.example.riyadal_qulub.ui.navigation.Screen
 import com.example.riyadal_qulub.ui.theme.Primary
 import com.example.riyadal_qulub.ui.theme.rubikSansFamily
 import com.example.riyadal_qulub.util.convertMillisToDate
 import com.example.riyadal_qulub.util.formatLocalDateTime
+import com.example.riyadal_qulub.util.toLocalDateTime
 import java.time.LocalDateTime
+
+
+private const val TAG = "AddWirdScreen"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddWirdScreen(
     viewModel: AddViewModel = hiltViewModel(), navController: NavController
 ) {
+
+    val timePickerState = rememberTimePickerState()
 
     val state by viewModel.state.collectAsStateWithLifecycle()
     val datePickerState = rememberDatePickerState()
@@ -59,6 +69,32 @@ fun AddWirdScreen(
     val selectedDate = datePickerState.selectedDateMillis?.let {
         convertMillisToDate(it)
     } ?: ""
+
+    val timeDialogState = remember { mutableStateOf(false) }
+
+
+    when (timeDialogState.value) {
+        true -> {
+            TimePickerDialog(
+                onCancel = { timeDialogState.value = false },
+                onConfirm = {
+                    timeDialogState.value = false
+                    Log.i(TAG, "AddWirdScreen: ${timePickerState.hour}:${timePickerState.minute}")
+                    Log.i(TAG, timePickerState.toLocalDateTime().toString())
+                },
+                content = {
+                    TimeInput(
+                        state = timePickerState,
+                        modifier = Modifier.padding(16.dp)
+                    )
+                }
+            )
+        }
+
+        false -> {
+
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -112,7 +148,11 @@ fun AddWirdScreen(
                 imageVector = Icons.Default.Add,
                 contentDescription = "Add",
                 tint = Primary,
-                modifier = Modifier.size(12.dp) // Adjust the size as needed
+                modifier = Modifier
+                    .size(12.dp) // Adjust the size as needed
+                    .clickable {
+                        timeDialogState.value = true
+                    }
             )
             Text(text = "إضافة تنبيه",
                 fontFamily = rubikSansFamily,
@@ -121,7 +161,7 @@ fun AddWirdScreen(
                 textAlign = TextAlign.End,
                 modifier = Modifier.clickable {
 
-                    })
+                })
 
         }
         Divider(modifier = Modifier.padding(vertical = 16.dp))
@@ -202,7 +242,7 @@ fun AddWirdScreen(
                 textAlign = TextAlign.End,
                 modifier = Modifier.clickable {
 
-                    })
+                })
         }
         Row(
             horizontalArrangement = Arrangement.End,
@@ -220,7 +260,7 @@ fun AddWirdScreen(
                 textAlign = TextAlign.End,
                 modifier = Modifier.clickable {
 
-                    })
+                })
         }
         Button(
             onClick = {

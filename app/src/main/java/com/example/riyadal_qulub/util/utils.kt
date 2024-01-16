@@ -1,5 +1,7 @@
 package com.example.riyadal_qulub.util
 
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TimePickerState
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Canvas
 import androidx.compose.ui.graphics.drawscope.DrawScope
@@ -88,3 +90,9 @@ class NoOpXAxisDrawer : XAxisDrawer {
         return 0f
     }
 }
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+fun TimePickerState.toLocalDateTime(): LocalDateTime {
+    val currentDateTime = LocalDateTime.now()
+    return currentDateTime.withHour(this.hour).withMinute(this.minute)}

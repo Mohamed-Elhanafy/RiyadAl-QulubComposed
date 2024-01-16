@@ -21,17 +21,6 @@ class CounterNotificationService(private val context: Context) {
                     PendingIntent.FLAG_IMMUTABLE
         )
 
-        /*
-                val increment = PendingIntent.getBroadcast(
-                    context,
-                    2,
-                    Intent(context, CounterNotificationReceiver::class.java),
-                    PendingIntent.FLAG_UPDATE_CURRENT or
-                            PendingIntent.FLAG_IMMUTABLE
-                )
-        */
-
-
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setContentTitle("Wird")
             .setContentText("you have  $wirdName")
